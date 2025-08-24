@@ -26,7 +26,7 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
-      - uses: pulumi/actions@v3
+      - uses: pulumi/actions@v6
         with:
           command: up
           stack-name: dev
