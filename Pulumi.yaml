@@ -4,4 +4,4 @@ runtime:
   name: nodejs
   options:
     packagemanager: bun
-    nodeargs: "--env-file=.env"
+    # nodeargs: "--env-file=.env"
