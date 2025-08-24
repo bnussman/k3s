@@ -3,8 +3,12 @@ import * as kubernetes from "@pulumi/kubernetes";
 
 const config = new pulumi.Config();
 
+if (!process.env.KUBECONFIG) {
+  throw new Error("KUBECONFIG environment variable is not set");
+}
+
 const provider = new kubernetes.Provider("kubernetes", {
-  kubeconfig: process.env.KUBECONFIG,
+  kubeconfig: (process.env.KUBECONFIG as string).trim(),
 });
 
 // Create a namespace
