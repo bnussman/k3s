@@ -1,3 +1,5 @@
+console.log(process.env);
+
 import * as pulumi from "@pulumi/pulumi";
 import * as kubernetes from "@pulumi/kubernetes";
 
