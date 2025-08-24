@@ -1,0 +1,7 @@
+name: k3s
+description: k3s instance
+runtime:
+  name: nodejs
+  options:
+    packagemanager: bun
+    nodeargs: "--env-file=.env"
