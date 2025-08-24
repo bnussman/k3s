@@ -19,6 +19,9 @@ jobs:
       options: --user root
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: latest
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
