@@ -14,9 +14,9 @@ jobs:
       attestations: write
       id-token: write
     runs-on: self-hosted
-    container:
-      image: ghcr.io/actions/actions-runner
-      options: --user root
+    # container:
+    #   image: ghcr.io/actions/actions-runner
+    #   options: --user root
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

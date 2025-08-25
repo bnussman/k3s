@@ -1,15 +1,7 @@
-import * as pulumi from "@pulumi/pulumi";
+// import * as pulumi from "@pulumi/pulumi";
 import * as kubernetes from "@pulumi/kubernetes";
 
-const config = new pulumi.Config();
-
-if (!process.env.KUBECONFIG) {
-  throw new Error("KUBECONFIG environment variable is not set");
-}
-
-const provider = new kubernetes.Provider("kubernetes", {
-  kubeconfig: (process.env.KUBECONFIG as string).trim(),
-});
+// const config = new pulumi.Config();
 
 // Create a namespace
 const dashboardNamespace = new kubernetes.core.v1.Namespace(
@@ -19,7 +11,6 @@ const dashboardNamespace = new kubernetes.core.v1.Namespace(
       name: "kubernetes-dashboard",
     },
   },
-  { provider },
 );
 
 // Use Helm to install the Kubernets dashboard
@@ -41,19 +32,14 @@ const ingressController = new kubernetes.helm.v3.Release(
       },
     },
   },
-  { provider },
 );
 
-const serviceAccount = new kubernetes.core.v1.ServiceAccount(
-  "admin-user",
-  {
-    metadata: {
-      name: "admin-user",
-      namespace: dashboardNamespace.metadata.name,
-    },
+const serviceAccount = new kubernetes.core.v1.ServiceAccount("admin-user", {
+  metadata: {
+    name: "admin-user",
+    namespace: dashboardNamespace.metadata.name,
   },
-  { provider },
-);
+});
 
 const serviceAccountRoleBining = new kubernetes.rbac.v1.ClusterRoleBinding(
   "admin-role-binding",
@@ -74,15 +60,9 @@ const serviceAccountRoleBining = new kubernetes.rbac.v1.ClusterRoleBinding(
       },
     ],
   },
-  { provider },
 );
 
 // install cloud native PG for databases
-const cnpg = new kubernetes.yaml.ConfigFile(
-  "cloudnative-pg",
-  {
-    file: "https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.27/releases/cnpg-1.27.0.yaml",
-    skipAwait: true,
-  },
-  { provider },
-);
+const cnpg = new kubernetes.yaml.ConfigFile("cloudnative-pg", {
+  file: "https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.27/releases/cnpg-1.27.0.yaml",
+});
