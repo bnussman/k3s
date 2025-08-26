@@ -68,13 +68,16 @@ const cnpg = new kubernetes.yaml.ConfigFile("cloudnative-pg", {
 });
 
 const traefikConfig = `
-  ingressRoute:
-    dashboard:
-      enabled: true
-  ports:
-    traefik:
-      expose:
-        default: true
+ingressRoute:
+  dashboard:
+    enabled: true
+ports:
+  traefik:
+    expose:
+      default: true
+  metrics:
+    expose:
+      default: true
 `.trim();
 
 const traefikHelmChartConfig = new kubernetes.apiextensions.CustomResource(
