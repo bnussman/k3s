@@ -74,7 +74,7 @@ const traefikDashboardService = new kubernetes.core.v1.Service(
       },
     },
     spec: {
-      type: "ClusterIP",
+      type: "NodePort",
       ports: [
         {
           name: "traefik",
@@ -90,38 +90,6 @@ const traefikDashboardService = new kubernetes.core.v1.Service(
     },
   },
 );
-
-const traefikIngress = new kubernetes.networking.v1.Ingress("traefik-ingress", {
-  metadata: {
-    name: "traefik-ingress",
-    namespace: "kube-system",
-    annotations: {
-      "spec.ingressClassName": "traefik",
-    },
-  },
-  spec: {
-    rules: [
-      {
-        http: {
-          paths: [
-            {
-              path: "/",
-              pathType: "Prefix",
-              backend: {
-                service: {
-                  name: traefikDashboardService.metadata.name,
-                  port: {
-                    number: 9000,
-                  },
-                },
-              },
-            },
-          ],
-        },
-      },
-    ],
-  },
-});
 
 // install cloud native PG for databases
 const cnpg = new kubernetes.yaml.ConfigFile("cloudnative-pg", {
