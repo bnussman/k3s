@@ -66,31 +66,3 @@ const serviceAccountRoleBining = new kubernetes.rbac.v1.ClusterRoleBinding(
 const cnpg = new kubernetes.yaml.ConfigFile("cloudnative-pg", {
   file: "https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.27/releases/cnpg-1.27.0.yaml",
 });
-
-const traefikConfig = `
-additionalArguments:
-  - "--api"
-  - "--api.dashboard=true"
-  - "--api.insecure=true"
-ports:
-  traefik:
-    expose: true
-providers:
-  kubernetesCRD:
-    allowCrossNamespace: true
-`.trim();
-
-const traefikHelmChartConfig = new kubernetes.apiextensions.CustomResource(
-  "traefik-helmchartconfig",
-  {
-    apiVersion: "helm.cattle.io/v1",
-    kind: "HelmChartConfig",
-    metadata: {
-      name: "traefik",
-      namespace: "kube-system",
-    },
-    spec: {
-      valuesContent: traefikConfig,
-    },
-  },
-);
