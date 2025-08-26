@@ -26,10 +26,14 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
+      - name: Write Kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
+          chmod 600 ~/.kube/config
       - uses: pulumi/actions@v6
         with:
           command: up
           stack-name: dev
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
