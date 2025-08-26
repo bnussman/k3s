@@ -68,16 +68,8 @@ const cnpg = new kubernetes.yaml.ConfigFile("cloudnative-pg", {
 });
 
 const traefikConfig = `
-additionalArguments:
-  - "--api"
-  - "--api.dashboard=true"
-  - "--api.insecure=true"
-ports:
-  traefik:
-    expose: true
-providers:
-  kubernetesCRD:
-    allowCrossNamespace: true
+    dashboard:
+      enabled: true
 `.trim();
 
 const traefikHelmChartConfig = new kubernetes.apiextensions.CustomResource(
