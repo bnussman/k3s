@@ -62,35 +62,6 @@ const serviceAccountRoleBining = new kubernetes.rbac.v1.ClusterRoleBinding(
   },
 );
 
-const traefikDashboardService = new kubernetes.core.v1.Service(
-  "traefik-dashboard-service",
-  {
-    metadata: {
-      name: "traefik-dashboard",
-      namespace: "kube-system",
-      labels: {
-        "app.kubernetes.io/instance": "traefik",
-        "app.kubernetes.io/name": "traefik-dashboard",
-      },
-    },
-    spec: {
-      type: "NodePort",
-      ports: [
-        {
-          name: "traefik",
-          port: 9000,
-          targetPort: "traefik",
-          protocol: "TCP",
-        },
-      ],
-      selector: {
-        "app.kubernetes.io/instance": "traefik-kube-system",
-        "app.kubernetes.io/name": "traefik",
-      },
-    },
-  },
-);
-
 // install cloud native PG for databases
 const cnpg = new kubernetes.yaml.ConfigFile("cloudnative-pg", {
   file: "https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.27/releases/cnpg-1.27.0.yaml",
