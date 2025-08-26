@@ -71,7 +71,10 @@ const traefikConfig = `
   ingressRoute:
     dashboard:
       enabled: true
-      entryPoints: ["web", "websecure"]
+  ports:
+    traefik:
+      expose:
+        default: true
 `.trim();
 
 const traefikHelmChartConfig = new kubernetes.apiextensions.CustomResource(
