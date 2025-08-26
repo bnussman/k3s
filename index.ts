@@ -67,63 +67,30 @@ const cnpg = new kubernetes.yaml.ConfigFile("cloudnative-pg", {
   file: "https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.27/releases/cnpg-1.27.0.yaml",
 });
 
-const traefikDashboardService = new kubernetes.core.v1.Service(
-  "traefik-dashboard-service",
+const traefikConfig = `
+additionalArguments:
+  - "--api"
+  - "--api.dashboard=true"
+  - "--api.insecure=true"
+ports:
+  traefik:
+    expose: true
+providers:
+  kubernetesCRD:
+    allowCrossNamespace: true
+`.trim();
+
+const traefikHelmChartConfig = new kubernetes.apiextensions.CustomResource(
+  "traefik-helmchartconfig",
   {
+    apiVersion: "helm.cattle.io/v1",
+    kind: "HelmChartConfig",
     metadata: {
-      name: "traefik-dashboard",
+      name: "traefik",
       namespace: "kube-system",
-      labels: {
-        "app.kubernetes.io/instance": "traefik",
-        "app.kubernetes.io/name": "traefik-dashboard",
-      },
     },
     spec: {
-      type: "ClusterIP",
-      ports: [
-        {
-          name: "traefik",
-          port: 9000,
-          targetPort: "traefik",
-          protocol: "TCP",
-        },
-      ],
-      selector: {
-        "app.kubernetes.io/instance": "traefik-kube-system",
-        "app.kubernetes.io/name": "traefik",
-      },
+      valuesContent: traefikConfig,
     },
   },
 );
-
-const traefikIngress = new kubernetes.networking.v1.Ingress("traefik-ingress", {
-  metadata: {
-    name: "traefik-ingress",
-    namespace: "kube-system",
-    annotations: {
-      "spec.ingressClassName": "traefik",
-    },
-  },
-  spec: {
-    rules: [
-      {
-        http: {
-          paths: [
-            {
-              path: "/",
-              pathType: "Prefix",
-              backend: {
-                service: {
-                  name: traefikDashboardService.metadata.name,
-                  port: {
-                    number: 9000,
-                  },
-                },
-              },
-            },
-          ],
-        },
-      },
-    ],
-  },
-});
