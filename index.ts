@@ -63,9 +63,9 @@ const serviceAccountRoleBining = new kubernetes.rbac.v1.ClusterRoleBinding(
 );
 
 // install cloud native PG for databases
-const cnpg = new kubernetes.yaml.ConfigFile("cloudnative-pg", {
-  file: "https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.27/releases/cnpg-1.27.0.yaml",
-});
+// const cnpg = new kubernetes.yaml.ConfigFile("cloudnative-pg", {
+//   file: "https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.27/releases/cnpg-1.27.0.yaml",
+// });
 
 const traefikConfig = `
 ingressRoute:
