@@ -13,11 +13,12 @@ jobs:
       packages: write
       attestations: write
       id-token: write
-    runs-on: self-hosted
-    # container:
-    #   image: ghcr.io/actions/actions-runner
-    #   options: --user root
+    runs-on: ubuntu-latest
     steps:
+      - name: Set up WireGuard Connection
+        uses: niklaskeerl/easy-wireguard-action@v2
+        with:
+          WG_CONFIG_FILE: ${{ secrets.WG_CONFIG_FILE }}
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
