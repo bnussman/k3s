@@ -15,10 +15,9 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     steps:
-      - name: Set up WireGuard Connection
-        uses: niklaskeerl/easy-wireguard-action@v2
+      - uses: tailscale/github-action@v4
         with:
-          WG_CONFIG_FILE: ${{ secrets.WG_CONFIG_FILE }}
+          authkey: ${{ secrets.TS_AUTHKEY }}
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
