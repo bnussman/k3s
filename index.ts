@@ -14,25 +14,16 @@ const dashboardNamespace = new kubernetes.core.v1.Namespace(
 );
 
 // Use Helm to install the Kubernets dashboard
-const ingressController = new kubernetes.helm.v3.Release(
-  "kubernetes-dashboard",
-  {
-    chart: "kubernetes-dashboard",
-    namespace: dashboardNamespace.metadata.name,
-    repositoryOpts: {
-      repo: "https://kubernetes.github.io/dashboard/",
-    },
-    createNamespace: true,
-    version: "7.13.0",
-    values: {
-      kong: {
-        proxy: {
-          type: "NodePort",
-        },
-      },
-    },
+const headlamp = new kubernetes.helm.v3.Release("headlamp", {
+  chart: "headlamp",
+  namespace: dashboardNamespace.metadata.name,
+  repositoryOpts: {
+    repo: "https://kubernetes-sigs.github.io/headlamp/",
   },
-);
+  createNamespace: true,
+  version: "0.41.0",
+  values: {},
+});
 
 const serviceAccount = new kubernetes.core.v1.ServiceAccount("admin-user", {
   metadata: {
@@ -61,11 +52,6 @@ const serviceAccountRoleBining = new kubernetes.rbac.v1.ClusterRoleBinding(
     ],
   },
 );
-
-// install cloud native PG for databases
-// const cnpg = new kubernetes.yaml.ConfigFile("cloudnative-pg", {
-//   file: "https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.27/releases/cnpg-1.27.0.yaml",
-// });
 
 const traefikConfig = `
 ingressRoute:
