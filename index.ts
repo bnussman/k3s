@@ -22,7 +22,11 @@ const headlamp = new kubernetes.helm.v3.Release("headlamp", {
   },
   createNamespace: true,
   version: "0.41.0",
-  values: {},
+  values: {
+    service: {
+      type: "NodePort",
+    },
+  },
 });
 
 const serviceAccount = new kubernetes.core.v1.ServiceAccount("admin-user", {
