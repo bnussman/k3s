@@ -57,6 +57,19 @@ const serviceAccountRoleBining = new kubernetes.rbac.v1.ClusterRoleBinding(
   },
 );
 
+const adminToken = new kubernetes.core.v1.Secret("admin-user-token", {
+  apiVersion: "v1",
+  kind: "Secret",
+  type: "kubernetes.io/service-account-token",
+  "metadata": {
+    name: "admin-user-token",
+    namespace: dashboardNamespace.metadata.name,
+    annotations: {
+      "kubernetes.io/service-account.name": serviceAccount.metadata.name,
+    }
+  }
+});
+
 const traefikConfig = `
 ingressRoute:
   dashboard:
