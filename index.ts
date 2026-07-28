@@ -1,9 +1,7 @@
-// import * as pulumi from "@pulumi/pulumi";
 import * as kubernetes from "@pulumi/kubernetes";
+import { readFileSync } from "fs";
+import path = require("path");
 
-// const config = new pulumi.Config();
-
-// Create a namespace
 const dashboardNamespace = new kubernetes.core.v1.Namespace(
   "kubernetes-dashboard",
   {
@@ -97,3 +95,71 @@ const traefikHelmChartConfig = new kubernetes.apiextensions.CustomResource(
     },
   },
 );
+
+const observabilityNamespace = new kubernetes.core.v1.Namespace(
+  "observability",
+  {
+    metadata: {
+      name: "observability",
+    },
+  },
+);
+
+const promethusAppName = "prometheus";
+const configPath = path.join(__dirname, "prometheus.yml");
+const prometheusConfigContent = readFileSync(configPath, "utf-8")
+  .replaceAll("{{K3S_TOKEN}}", process.env.K3S_TOKEN ?? "");
+
+const prometheusConfigSecret = new kubernetes.core.v1.Secret(`${promethusAppName}-config-secret`, {
+  metadata: { namespace: observabilityNamespace.metadata.name },
+  stringData: {
+    "prometheus.yml": prometheusConfigContent,
+  },
+});
+
+const prometheusDeployment = new kubernetes.apps.v1.Deployment(`${promethusAppName}-deployment`, {
+  metadata: { namespace: observabilityNamespace.metadata.name },
+  spec: {
+    replicas: 1,
+    selector: { matchLabels: { app: promethusAppName } },
+    template: {
+      metadata: { labels: { app: promethusAppName } },
+      spec: {
+        containers: [
+          {
+            name: "prometheus",
+            image: "prom/prometheus:v3.13.1",
+            args: [
+              "--config.file=/etc/prometheus/prometheus.yml",
+              "--storage.tsdb.path=/prometheus",
+            ],
+            ports: [{ containerPort: 9090, name: "http" }],
+            volumeMounts: [
+              {
+                name: "config-volume",
+                mountPath: "/etc/prometheus",
+              },
+            ],
+          },
+        ],
+        volumes: [
+          {
+            name: "config-volume",
+            secret: {
+              secretName: prometheusConfigSecret.metadata.name,
+            },
+          },
+        ],
+      },
+    },
+  },
+});
+
+const prometheusService = new kubernetes.core.v1.Service(`${promethusAppName}-service`, {
+  metadata: { namespace: observabilityNamespace.metadata.name },
+  spec: {
+    type: "NodePort",
+    ports: [{ port: 9090, targetPort: 9090, name: "http" }],
+    selector: { app: promethusAppName },
+  },
+});

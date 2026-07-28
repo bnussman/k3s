@@ -4,6 +4,7 @@
         "outDir": "bin",
         "target": "es2020",
         "module": "commonjs",
+        "lib": ["es2021"],
         "moduleResolution": "node",
         "sourceMap": true,
         "experimentalDecorators": true,
