@@ -117,6 +117,18 @@ const prometheusConfigSecret = new kubernetes.core.v1.Secret(`${promethusAppName
   },
 });
 
+const prometheusPvc = new kubernetes.core.v1.PersistentVolumeClaim(`${promethusAppName}-storage`, {
+  metadata: { namespace: observabilityNamespace.metadata.name },
+  spec: {
+    accessModes: ["ReadWriteOnce"],
+    resources: {
+      requests: {
+        storage: "8Gi",
+      },
+    },
+  },
+});
+
 const prometheusDeployment = new kubernetes.apps.v1.Deployment(`${promethusAppName}-deployment`, {
   metadata: { namespace: observabilityNamespace.metadata.name },
   spec: {
@@ -132,6 +144,7 @@ const prometheusDeployment = new kubernetes.apps.v1.Deployment(`${promethusAppNa
             args: [
               "--config.file=/etc/prometheus/prometheus.yml",
               "--storage.tsdb.path=/prometheus",
+              "--storage.tsdb.retention.size=8GB"
             ],
             ports: [{ containerPort: 9090, name: "http" }],
             volumeMounts: [
@@ -139,6 +152,10 @@ const prometheusDeployment = new kubernetes.apps.v1.Deployment(`${promethusAppNa
                 name: "config-volume",
                 mountPath: "/etc/prometheus",
               },
+              {
+                name: "storage-volume",
+                mountPath: "/prometheus",
+              }
             ],
           },
         ],
@@ -147,6 +164,12 @@ const prometheusDeployment = new kubernetes.apps.v1.Deployment(`${promethusAppNa
             name: "config-volume",
             secret: {
               secretName: prometheusConfigSecret.metadata.name,
+            },
+          },
+          {
+            name: "storage-volume",
+            persistentVolumeClaim: {
+              claimName: prometheusPvc.metadata.name,
             },
           },
         ],
