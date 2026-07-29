@@ -244,6 +244,10 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
             ],
             env: [
               {
+                name: "GF_SERVER_DOMAIN",
+                value: "grafana.ridebeep.app"
+              },
+              {
                 name: "GF_AUTH_GOOGLE_NAME",
                 value: "Google",
               },
