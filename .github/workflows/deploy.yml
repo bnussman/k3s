@@ -40,3 +40,4 @@ jobs:
           K3S_TOKEN: ${{ secrets.K3S_TOKEN }}
           GF_AUTH_GOOGLE_CLIENT_ID: ${{ secrets.GF_AUTH_GOOGLE_CLIENT_ID }}
           GF_AUTH_GOOGLE_CLIENT_SECRET: ${{ secrets.GF_AUTH_GOOGLE_CLIENT_SECRET }}
+          GRAFANA_GITHUB_PAT: ${{ secrets.GRAFANA_GITHUB_PAT }}
