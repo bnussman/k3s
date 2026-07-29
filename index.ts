@@ -212,6 +212,19 @@ const grafanaGoogleAuthSecret = new kubernetes.core.v1.Secret("grafana-google-au
   },
 });
 
+const prometheusDatastorePath = path.join(__dirname, "prometheus-datastore.yml");
+const prometheusDatastoreConfigContent = readFileSync(prometheusDatastorePath, "utf-8")
+
+const grafanaDatasourceConfig = new kubernetes.core.v1.ConfigMap("grafana-datasource-config", {
+  metadata: {
+    namespace: observabilityNamespace.metadata.name,
+    name: "grafana-datasource-config",
+  },
+  data: {
+    "prometheus-datasource.yml": prometheusDatastoreConfigContent,
+  },
+});
+
 const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment", {
   metadata: {
     namespace: observabilityNamespace.metadata.name,
@@ -347,6 +360,10 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
                 name: "storage",
                 mountPath: "/var/lib/grafana",
               },
+              {
+                name: "grafana-datasources",
+                mountPath: "/etc/grafana/provisioning/datasources",
+              },
             ],
           },
         ],
@@ -355,6 +372,12 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
             name: "storage",
             persistentVolumeClaim: {
               claimName: grafanaPvc.metadata.name,
+            },
+          },
+          {
+            name: "grafana-datasources",
+            configMap: {
+              name: grafanaDatasourceConfig.metadata.name,
             },
           },
         ],
