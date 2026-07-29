@@ -225,17 +225,6 @@ const grafanaDatasourceConfig = new kubernetes.core.v1.ConfigMap("grafana-dataso
   },
 });
 
-const grafanaGithubConfigPath = path.join(__dirname, "grafana-github.yml");
-const grafanaGithubConfigContent = readFileSync(grafanaGithubConfigPath, "utf-8")
-  .replaceAll("{{GRAFANA_GITHUB_PAT}}", process.env.GRAFANA_GITHUB_PAT ?? "");
-
-const grafanaGithubConfigSecret = new kubernetes.core.v1.Secret(`grafana-github-config-secret`, {
-  metadata: { namespace: observabilityNamespace.metadata.name },
-  stringData: {
-    "grafana-github.yml": grafanaGithubConfigContent,
-  },
-});
-
 const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment", {
   metadata: {
     namespace: observabilityNamespace.metadata.name,
@@ -375,10 +364,6 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
                 name: "grafana-datasources",
                 mountPath: "/etc/grafana/provisioning/datasources",
               },
-              {
-                name: "grafana-github-repo",
-                mountPath: "/etc/grafana/provisioning",
-              }
             ],
           },
         ],
@@ -393,12 +378,6 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
             name: "grafana-datasources",
             configMap: {
               name: grafanaDatasourceConfig.metadata.name,
-            },
-          },
-          {
-            name: "grafana-github-repo",
-            secret: {
-              secretName: grafanaGithubConfigSecret.metadata.name,
             },
           },
         ],
