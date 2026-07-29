@@ -331,11 +331,11 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
               },
               {
                 name: "GF_AUTH_DISABLE_LOGIN",
-                value: "false",
+                value: "true",
               },
               {
                 name: "GF_AUTH_DISABLE_LOGIN_FORM",
-                value: "false",
+                value: "true",
               },
             ],
             volumeMounts: [
