@@ -377,7 +377,7 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
               },
               {
                 name: "grafana-github-repo",
-                mountPath: "/etc/grafana/provisioning",
+                mountPath: "/etc/grafana/provisioning/repositories",
               }
             ],
           },
