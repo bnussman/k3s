@@ -201,6 +201,17 @@ const grafanaPvc = new kubernetes.core.v1.PersistentVolumeClaim("grafana-pvc", {
   },
 });
 
+const grafanaGoogleAuthSecret = new kubernetes.core.v1.Secret("grafana-google-auth", {
+  metadata: {
+    name: "grafana-google-auth",
+    namespace: observabilityNamespace.metadata.name,
+  },
+  stringData: {
+    "client-id": process.env.GF_AUTH_GOOGLE_CLIENT_ID ?? "",
+    "client-secret": process.env.GF_AUTH_GOOGLE_CLIENT_SECRET ?? "",
+  },
+});
+
 const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment", {
   metadata: {
     namespace: observabilityNamespace.metadata.name,
@@ -233,12 +244,70 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
             ],
             env: [
               {
-                name: "GF_SECURITY_ADMIN_USER",
-                value: "admin",
+                name: "GF_AUTH_GOOGLE_NAME",
+                value: "Google",
               },
               {
-                name: "GF_SECURITY_ADMIN_PASSWORD",
-                value: "changeme",
+                name: "GF_AUTH_GOOGLE_ICON",
+                value: "google",
+              },
+              {
+                name: "GF_AUTH_GOOGLE_ENABLED",
+                value: "true",
+              },
+              {
+                name: "GF_AUTH_GOOGLE_ALLOW_SIGN_UP",
+                value: "true",
+              },
+              {
+                name: "GF_AUTH_GOOGLE_AUTO_LOGIN",
+                value: "false",
+              },
+              {
+                name: "GF_AUTH_GOOGLE_CLIENT_ID",
+                valueFrom: {
+                  secretKeyRef: {
+                    name: grafanaGoogleAuthSecret.metadata.name,
+                    key: "client-id",
+                  },
+                },
+              },
+              {
+                name: "GF_AUTH_GOOGLE_CLIENT_SECRET",
+                valueFrom: {
+                  secretKeyRef: {
+                    name: grafanaGoogleAuthSecret.metadata.name,
+                    key: "client-secret",
+                  },
+                },
+              },
+              {
+                name: "GF_AUTH_GOOGLE_SCOPES",
+                value: "openid email profile",
+              },
+              {
+                name: "GF_AUTH_GOOGLE_AUTH_URL",
+                value: "https://accounts.google.com/o/oauth2/v2/auth",
+              },
+              {
+                name: "GF_AUTH_GOOGLE_TOKEN_URL",
+                value: "https://oauth2.googleapis.com/token",
+              },
+              {
+                name: "GF_AUTH_GOOGLE_API_URL",
+                value: "https://openidconnect.googleapis.com/v1/userinfo",
+              },
+              {
+                name: "GF_AUTH_GOOGLE_ALLOWED_DOMAINS",
+                value: "ridebeep.app",
+              },
+              {
+                name: "GF_AUTH_GOOGLE_HOSTED_DOMAIN",
+                value: "ridebeep.app",
+              },
+              {
+                name: "GF_AUTH_GOOGLE_USE_PKCE",
+                value: "true",
               },
             ],
             volumeMounts: [
