@@ -323,7 +323,11 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
               },
               {
                 name: "GF_AUTH_GOOGLE_ROLE_ATTRIBUTE_PATH",
-                value: "email=='banks@ridebeep.app' && 'Admin' || 'Viewer'"
+                value: "email=='banks@ridebeep.app' && 'GrafanaAdmin' || 'Viewer'"
+              },
+              {
+                name: "GF_AUTH_GOOGLE_ALLOW_ASSIGN_GRAFANA_ADMIN",
+                value: "true"
               },
               {
                 name: "GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION",
