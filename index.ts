@@ -186,3 +186,121 @@ const prometheusService = new kubernetes.core.v1.Service(`${promethusAppName}-se
     selector: { app: promethusAppName },
   },
 });
+
+const grafanaPvc = new kubernetes.core.v1.PersistentVolumeClaim("grafana-pvc", {
+  metadata: {
+    namespace: observabilityNamespace.metadata.name,
+  },
+  spec: {
+    accessModes: ["ReadWriteOnce"],
+    resources: {
+      requests: {
+        storage: "5Gi",
+      },
+    },
+  },
+});
+
+const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment", {
+  metadata: {
+    namespace: observabilityNamespace.metadata.name,
+    labels: {
+      app: "grafana",
+    },
+  },
+  spec: {
+    replicas: 1,
+    selector: {
+      matchLabels: {
+        app: "grafana",
+      },
+    },
+    template: {
+      metadata: {
+        labels: {
+          app: "grafana",
+        },
+      },
+      spec: {
+        containers: [
+          {
+            name: "grafana",
+            image: "grafana/grafana:13.1.1",
+            ports: [
+              {
+                containerPort: 3000,
+              },
+            ],
+            env: [
+              {
+                name: "GF_SECURITY_ADMIN_USER",
+                value: "admin",
+              },
+              {
+                name: "GF_SECURITY_ADMIN_PASSWORD",
+                value: "changeme",
+              },
+            ],
+            volumeMounts: [
+              {
+                name: "storage",
+                mountPath: "/var/lib/grafana",
+              },
+            ],
+          },
+        ],
+        volumes: [
+          {
+            name: "storage",
+            persistentVolumeClaim: {
+              claimName: grafanaPvc.metadata.name,
+            },
+          },
+        ],
+      },
+    },
+  },
+});
+
+const grafanaService = new kubernetes.core.v1.Service("grafana-service", {
+  metadata: {
+    name: 'grafana-service',
+    namespace: observabilityNamespace.metadata.name,
+  },
+  spec: {
+    selector: { app: "grafana" },
+    ports: [{ port: 3000, targetPort: 3000 }],
+    type: "ClusterIP",
+  },
+});
+
+const grafanaIngress = new kubernetes.networking.v1.Ingress(
+  "grafana-ingress",
+  {
+    metadata: {
+      name: "grafana-ingress",
+      namespace: observabilityNamespace.metadata.name,
+    },
+    spec: {
+      rules: [
+        {
+          host: "grafana.ridebeep.app",
+          http: {
+            paths: [
+              {
+                path: "/",
+                pathType: "Prefix",
+                backend: {
+                  service: {
+                    name: grafanaService.metadata.name,
+                    port: { number: 3000 },
+                  },
+                },
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+);
