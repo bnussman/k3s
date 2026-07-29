@@ -38,3 +38,5 @@ jobs:
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
           K3S_TOKEN: ${{ secrets.K3S_TOKEN }}
+          GF_AUTH_GOOGLE_CLIENT_ID: ${{ secrets.GF_AUTH_GOOGLE_CLIENT_ID }}
+          GF_AUTH_GOOGLE_CLIENT_SECRET: ${{ secrets.GF_AUTH_GOOGLE_CLIENT_SECRET }}
