@@ -248,6 +248,10 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
                 value: "grafana.ridebeep.app"
               },
               {
+                name: "GF_SERVER_ROOT_URL",
+                value: "https://%(domain)s"
+              },
+              {
                 name: "GF_AUTH_GOOGLE_NAME",
                 value: "Google",
               },
