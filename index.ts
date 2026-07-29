@@ -317,6 +317,14 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
                 name: "GF_AUTH_GOOGLE_USE_PKCE",
                 value: "true",
               },
+              {
+                name: "GF_AUTH_GOOGLE_SKIP_ORG_ROLE_SYNC",
+                value: "false"
+              },
+              {
+                name: "GF_AUTH_GOOGLE_ROLE_ATTRIBUTE_PATH",
+                value: "email=='banks@ridebeep.app' && 'Admin' || 'Viewer'"
+              }
             ],
             volumeMounts: [
               {
