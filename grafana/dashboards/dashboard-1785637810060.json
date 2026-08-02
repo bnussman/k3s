@@ -43,7 +43,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -168,7 +168,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "PBFA97CFB590B2093"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -293,7 +293,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -380,7 +380,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -506,7 +506,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -632,7 +632,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -757,7 +757,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1006,6 +1006,26 @@
       "to": "now"
     },
     "title": "cloudflared",
-    "variables": []
+    "variables": [
+      {
+        "kind": "DatasourceVariable",
+        "spec": {
+          "allowCustomValue": true,
+          "current": {
+            "text": "Prometheus",
+            "value": "PBFA97CFB590B2093"
+          },
+          "hide": "dontHide",
+          "includeAll": false,
+          "multi": false,
+          "name": "Datasource",
+          "options": [],
+          "pluginId": "prometheus",
+          "refresh": "onDashboardLoad",
+          "regex": "",
+          "skipUrlSync": false
+        }
+      }
+    ]
   }
 }
