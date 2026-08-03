@@ -560,7 +560,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -585,7 +585,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -713,7 +713,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -842,7 +842,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -970,7 +970,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -994,7 +994,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1018,7 +1018,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1146,7 +1146,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1277,7 +1277,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1301,7 +1301,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1325,7 +1325,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1452,7 +1452,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1579,7 +1579,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1603,7 +1603,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1627,7 +1627,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1651,7 +1651,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1675,7 +1675,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1699,7 +1699,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1826,7 +1826,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1850,7 +1850,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2096,7 +2096,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2224,7 +2224,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
