@@ -48,7 +48,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -135,7 +135,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -152,7 +152,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -236,7 +236,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -253,7 +253,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -339,7 +339,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -356,7 +356,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -441,7 +441,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -458,7 +458,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -543,7 +543,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -684,6 +684,8 @@
                     "lastNotNull"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -694,7 +696,7 @@
                 }
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -811,6 +813,8 @@
                     "lastNotNull"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -821,7 +825,7 @@
                 }
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -937,6 +941,8 @@
                     "lastNotNull"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -947,7 +953,7 @@
                 }
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -1111,6 +1117,8 @@
                     "lastNotNull"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -1121,7 +1129,7 @@
                 }
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -1240,6 +1248,8 @@
                     "lastNotNull"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -1250,7 +1260,7 @@
                 }
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -1413,6 +1423,8 @@
                     "lastNotNull"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -1423,7 +1435,7 @@
                 }
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -1538,6 +1550,8 @@
                     "lastNotNull"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -1548,7 +1562,7 @@
                 }
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -1783,6 +1797,8 @@
                     "lastNotNull"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -1793,7 +1809,7 @@
                 }
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -1932,6 +1948,8 @@
                     "lastNotNull"
                   ],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": false
                 },
@@ -1942,7 +1960,7 @@
                 }
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -1959,7 +1977,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2061,7 +2079,7 @@
                 "textMode": "auto"
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -2177,6 +2195,8 @@
                     "lastNotNull"
                   ],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": false
                 },
@@ -2187,7 +2207,7 @@
                 }
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -2303,6 +2323,8 @@
                     "lastNotNull"
                   ],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": false
                 },
@@ -2313,7 +2335,7 @@
                 }
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -2330,7 +2352,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2433,7 +2455,7 @@
                 "textMode": "auto"
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -2450,7 +2472,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2554,7 +2576,7 @@
                 "textMode": "auto"
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       },
@@ -2571,7 +2593,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${Datasource}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2657,7 +2679,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.0.1"
+            "version": "13.1.1"
           }
         }
       }
@@ -3069,7 +3091,20 @@
         ]
       }
     },
-    "links": [],
+    "links": [
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/bnussman/k3s/blob/main/grafana/dashboards/Infrastructure/k3s-cluster-monitoring.json"
+      }
+    ],
     "liveNow": false,
     "preload": false,
     "tags": [],
@@ -3096,13 +3131,33 @@
     "title": "K3s",
     "variables": [
       {
+        "kind": "DatasourceVariable",
+        "spec": {
+          "allowCustomValue": true,
+          "current": {
+            "text": "Prometheus",
+            "value": "PBFA97CFB590B2093"
+          },
+          "hide": "dontHide",
+          "includeAll": false,
+          "label": "",
+          "multi": false,
+          "name": "Datasource",
+          "options": [],
+          "pluginId": "prometheus",
+          "refresh": "onDashboardLoad",
+          "regex": "",
+          "skipUrlSync": false
+        }
+      },
+      {
         "kind": "QueryVariable",
         "spec": {
           "allValue": ".*",
           "allowCustomValue": true,
           "current": {
-            "text": "",
-            "value": ""
+            "text": "All",
+            "value": "$__all"
           },
           "definition": "label_values(node)",
           "hide": "dontHide",
@@ -3112,7 +3167,7 @@
           "options": [],
           "query": {
             "datasource": {
-              "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+              "name": "${Datasource}"
             },
             "group": "prometheus",
             "kind": "DataQuery",
@@ -3135,8 +3190,12 @@
           "allValue": ".*",
           "allowCustomValue": true,
           "current": {
-            "text": "",
-            "value": ""
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
           },
           "definition": "",
           "hide": "dontHide",
@@ -3146,7 +3205,7 @@
           "options": [],
           "query": {
             "datasource": {
-              "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+              "name": "${Datasource}"
             },
             "group": "prometheus",
             "kind": "DataQuery",
