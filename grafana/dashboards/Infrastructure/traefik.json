@@ -13,9 +13,6 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "legacyOptions": {
-            "type": "dashboard"
-          },
           "name": "Annotations \u0026 Alerts",
           "query": {
             "datasource": {
@@ -51,7 +48,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -89,7 +86,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -105,6 +102,7 @@
                 "graphMode": "area",
                 "justifyMode": "auto",
                 "orientation": "auto",
+                "percentChangeColorMode": "standard",
                 "reduceOptions": {
                   "calcs": [
                     "lastNotNull"
@@ -112,10 +110,12 @@
                   "fields": "",
                   "values": false
                 },
-                "textMode": "auto"
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
               }
             },
-            "version": "10.1.5"
+            "version": "13.1.1"
           }
         }
       },
@@ -132,7 +132,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -163,6 +163,7 @@
               "fieldConfig": {
                 "defaults": {
                   "color": {
+                    "fixedColor": "#73BF69",
                     "mode": "palette-classic"
                   },
                   "custom": {
@@ -179,6 +180,7 @@
               "options": {
                 "legend": {
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true,
                   "values": [
@@ -193,13 +195,15 @@
                   "fields": "",
                   "values": false
                 },
+                "sort": "desc",
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "asc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -216,7 +220,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -250,11 +254,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -271,6 +277,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -285,7 +292,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -298,24 +305,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true,
                   "sortBy": "Mean",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -332,7 +346,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -366,12 +380,14 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisGridShow": true,
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -388,6 +404,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -402,7 +419,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -415,24 +432,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true,
                   "sortBy": "Mean",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -449,7 +473,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -483,12 +507,14 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisGridShow": true,
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -505,6 +531,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -519,7 +546,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -532,24 +559,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true,
                   "sortBy": "Mean",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -566,7 +600,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -600,12 +634,14 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisGridShow": true,
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -622,6 +658,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -636,7 +673,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -649,24 +686,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true,
                   "sortBy": "Mean",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -683,7 +727,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -717,11 +761,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -738,6 +784,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -752,7 +799,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -765,24 +812,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true,
                   "sortBy": "Max",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -799,7 +853,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -833,11 +887,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -854,6 +910,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -868,7 +925,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -881,24 +938,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true,
                   "sortBy": "Mean",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -915,7 +979,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -949,12 +1013,14 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisGridShow": true,
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -971,6 +1037,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -985,7 +1052,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -998,24 +1065,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true,
                   "sortBy": "Mean",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -1071,11 +1145,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -1092,6 +1168,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -1106,7 +1183,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -1119,19 +1196,26 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "single",
                   "sort": "none"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -1187,11 +1271,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -1208,6 +1294,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -1222,7 +1309,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -1235,19 +1322,26 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "single",
                   "sort": "none"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -1264,7 +1358,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1298,11 +1392,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -1319,6 +1415,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -1333,7 +1430,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       }
                     ]
                   },
@@ -1342,24 +1439,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true,
                   "sortBy": "Max",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -1376,7 +1480,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1410,11 +1514,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -1431,6 +1537,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -1445,7 +1552,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       }
                     ]
                   },
@@ -1454,24 +1561,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true,
                   "sortBy": "Max",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -1488,7 +1602,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1522,11 +1636,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -1543,6 +1659,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -1557,7 +1674,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -1570,24 +1687,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true,
                   "sortBy": "Mean",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -1604,7 +1728,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1638,11 +1762,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -1659,6 +1785,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -1673,7 +1800,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -1685,24 +1812,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true,
                   "sortBy": "Max",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -1719,7 +1853,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+                        "name": "${DS_PROMETHEUS}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1753,11 +1887,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -1774,6 +1910,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -1788,7 +1925,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -1801,24 +1938,31 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [
                     "mean",
                     "max"
                   ],
                   "displayMode": "table",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true,
                   "sortBy": "Max",
                   "sortDesc": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       }
@@ -2038,7 +2182,20 @@
         ]
       }
     },
-    "links": [],
+    "links": [
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/bnussman/k3s/blob/main/grafana/dashboards/Infrastructure/traefik.json"
+      }
+    ],
     "liveNow": false,
     "preload": false,
     "tags": [],
@@ -2059,6 +2216,7 @@
       "fiscalYearStartMonth": 0,
       "from": "now-6h",
       "hideTimepicker": false,
+      "timezone": "browser",
       "to": "now"
     },
     "title": "Traefik",
@@ -2069,7 +2227,7 @@
           "allowCustomValue": true,
           "current": {
             "text": "Prometheus",
-            "value": "Prometheus"
+            "value": "PBFA97CFB590B2093"
           },
           "hide": "dontHide",
           "includeAll": false,
@@ -2090,17 +2248,12 @@
           "auto_count": 30,
           "auto_min": "1m",
           "current": {
-            "text": "auto",
-            "value": "$__auto_interval_interval"
+            "text": "$__auto",
+            "value": "$__auto"
           },
           "hide": "dontHide",
           "name": "interval",
           "options": [
-            {
-              "selected": true,
-              "text": "auto",
-              "value": "$__auto_interval_interval"
-            },
             {
               "selected": false,
               "text": "1m",
@@ -2152,8 +2305,8 @@
         "spec": {
           "allowCustomValue": true,
           "current": {
-            "text": "",
-            "value": ""
+            "text": "All",
+            "value": "$__all"
           },
           "definition": "label_values(traefik_open_connections, entrypoint)",
           "hide": "dontHide",
@@ -2163,7 +2316,7 @@
           "options": [],
           "query": {
             "datasource": {
-              "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+              "name": "${DS_PROMETHEUS}"
             },
             "group": "prometheus",
             "kind": "DataQuery",
@@ -2175,6 +2328,7 @@
           },
           "refresh": "onDashboardLoad",
           "regex": "",
+          "regexApplyTo": "value",
           "skipUrlSync": false,
           "sort": "disabled"
         }
@@ -2184,8 +2338,8 @@
         "spec": {
           "allowCustomValue": true,
           "current": {
-            "text": "",
-            "value": ""
+            "text": "All",
+            "value": "$__all"
           },
           "definition": "label_values(traefik_service_requests_total, service)",
           "hide": "dontHide",
@@ -2195,7 +2349,7 @@
           "options": [],
           "query": {
             "datasource": {
-              "name": "cfda171d-5bc3-483e-9c43-8fc596d79692"
+              "name": "${DS_PROMETHEUS}"
             },
             "group": "prometheus",
             "kind": "DataQuery",
@@ -2207,6 +2361,7 @@
           },
           "refresh": "onTimeRangeChanged",
           "regex": "",
+          "regexApplyTo": "value",
           "skipUrlSync": false,
           "sort": "alphabeticalAsc"
         }
