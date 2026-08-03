@@ -212,7 +212,7 @@ const grafanaGoogleAuthSecret = new kubernetes.core.v1.Secret("grafana-google-au
   },
 });
 
-const prometheusDatastorePath = path.join(__dirname, "prometheus-datastore.yml");
+const prometheusDatastorePath = path.join(__dirname, "/grafana/datastores/prometheus-datastore.yml");
 const prometheusDatastoreConfigContent = readFileSync(prometheusDatastorePath, "utf-8")
 
 const grafanaDatasourceConfig = new kubernetes.core.v1.ConfigMap("grafana-datasource-config", {
