@@ -13,9 +13,6 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "legacyOptions": {
-            "type": "dashboard"
-          },
           "name": "Annotations \u0026 Alerts",
           "query": {
             "datasource": {
@@ -30,6 +27,7 @@
       }
     ],
     "cursorSync": "Off",
+    "description": "",
     "editable": true,
     "elements": {
       "panel-10": {
@@ -45,9 +43,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -107,7 +105,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       }
                     ]
                   }
@@ -119,6 +117,7 @@
                 "graphMode": "area",
                 "justifyMode": "auto",
                 "orientation": "auto",
+                "percentChangeColorMode": "standard",
                 "reduceOptions": {
                   "calcs": [
                     "lastNotNull"
@@ -126,10 +125,12 @@
                   "fields": "",
                   "values": false
                 },
-                "textMode": "auto"
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
               }
             },
-            "version": "10.1.5"
+            "version": "13.1.1"
           }
         }
       },
@@ -146,9 +147,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -214,7 +215,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -265,14 +266,16 @@
                 },
                 "view": {
                   "allLayers": true,
+                  "dashboardVariable": false,
                   "id": "north-america",
                   "lat": 40,
                   "lon": -100,
+                  "noRepeat": false,
                   "zoom": 4
                 }
               }
             },
-            "version": "10.1.5"
+            "version": "13.1.1"
           }
         }
       },
@@ -289,9 +292,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -344,7 +347,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -360,6 +363,7 @@
                 "graphMode": "area",
                 "justifyMode": "auto",
                 "orientation": "auto",
+                "percentChangeColorMode": "standard",
                 "reduceOptions": {
                   "calcs": [
                     "mean"
@@ -367,10 +371,12 @@
                   "fields": "",
                   "values": false
                 },
-                "textMode": "auto"
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
               }
             },
-            "version": "10.1.5"
+            "version": "13.1.1"
           }
         }
       },
@@ -387,9 +393,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -442,7 +448,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -458,6 +464,7 @@
                 "graphMode": "area",
                 "justifyMode": "auto",
                 "orientation": "auto",
+                "percentChangeColorMode": "standard",
                 "reduceOptions": {
                   "calcs": [
                     "mean"
@@ -465,10 +472,12 @@
                   "fields": "/^duration$/",
                   "values": false
                 },
-                "textMode": "auto"
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
               }
             },
-            "version": "10.1.5"
+            "version": "13.1.1"
           }
         }
       },
@@ -485,9 +494,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -540,7 +549,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -556,6 +565,7 @@
                 "graphMode": "area",
                 "justifyMode": "auto",
                 "orientation": "auto",
+                "percentChangeColorMode": "standard",
                 "reduceOptions": {
                   "calcs": [
                     "mean"
@@ -563,10 +573,12 @@
                   "fields": "/^duration$/",
                   "values": false
                 },
-                "textMode": "auto"
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
               }
             },
-            "version": "10.1.5"
+            "version": "13.1.1"
           }
         }
       },
@@ -583,9 +595,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -634,11 +646,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 0,
                     "gradientMode": "none",
@@ -655,6 +669,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -669,7 +684,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -681,19 +696,26 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "single",
                   "sort": "none"
                 }
               }
             },
-            "version": "10.1.5"
+            "version": "13.1.1"
           }
         }
       },
@@ -710,9 +732,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -773,7 +795,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       }
                     ]
                   },
@@ -786,6 +808,7 @@
                 "graphMode": "area",
                 "justifyMode": "auto",
                 "orientation": "auto",
+                "percentChangeColorMode": "standard",
                 "reduceOptions": {
                   "calcs": [
                     "lastNotNull"
@@ -793,10 +816,12 @@
                   "fields": "",
                   "values": false
                 },
-                "textMode": "auto"
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
               }
             },
-            "version": "10.1.5"
+            "version": "13.1.1"
           }
         }
       },
@@ -813,9 +838,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -851,9 +876,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -902,11 +927,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 70,
                     "gradientMode": "opacity",
@@ -926,6 +953,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -940,7 +968,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -977,19 +1005,26 @@
                 ]
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "none"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -1006,38 +1041,15 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
+                        "dataset": "beep",
                         "editorMode": "builder",
                         "format": "table",
-                        "rawSql": "SELECT COUNT(*) FROM \"user\" LIMIT 50 ",
-                        "sql": {
-                          "columns": [
-                            {
-                              "name": "COUNT",
-                              "parameters": [
-                                {
-                                  "name": "*",
-                                  "type": "functionParameter"
-                                }
-                              ],
-                              "type": "function"
-                            }
-                          ],
-                          "groupBy": [
-                            {
-                              "property": {
-                                "type": "string"
-                              },
-                              "type": "groupBy"
-                            }
-                          ],
-                          "limit": 50
-                        },
-                        "table": "\"user\""
+                        "rawSql": ""
                       },
                       "version": "v0"
                     },
@@ -1067,7 +1079,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       }
                     ]
                   }
@@ -1079,6 +1091,7 @@
                 "graphMode": "area",
                 "justifyMode": "auto",
                 "orientation": "auto",
+                "percentChangeColorMode": "standard",
                 "reduceOptions": {
                   "calcs": [
                     "lastNotNull"
@@ -1086,10 +1099,12 @@
                   "fields": "",
                   "values": false
                 },
-                "textMode": "auto"
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
               }
             },
-            "version": "10.1.5"
+            "version": "13.1.1"
           }
         }
       },
@@ -1106,9 +1121,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -1168,7 +1183,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       }
                     ]
                   }
@@ -1180,6 +1195,7 @@
                 "graphMode": "area",
                 "justifyMode": "auto",
                 "orientation": "auto",
+                "percentChangeColorMode": "standard",
                 "reduceOptions": {
                   "calcs": [
                     "lastNotNull"
@@ -1187,10 +1203,12 @@
                   "fields": "",
                   "values": false
                 },
-                "textMode": "auto"
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
               }
             },
-            "version": "10.1.5"
+            "version": "13.1.1"
           }
         }
       },
@@ -1207,9 +1225,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -1246,9 +1264,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -1284,9 +1302,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -1322,9 +1340,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -1373,11 +1391,13 @@
                     "mode": "palette-classic"
                   },
                   "custom": {
+                    "axisBorderShow": false,
                     "axisCenteredZero": false,
                     "axisColorMode": "text",
                     "axisLabel": "Beeps",
                     "axisPlacement": "left",
                     "barAlignment": 0,
+                    "barWidthFactor": 0.6,
                     "drawStyle": "line",
                     "fillOpacity": 74,
                     "gradientMode": "opacity",
@@ -1397,6 +1417,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -1411,7 +1432,7 @@
                     "steps": [
                       {
                         "color": "green",
-                        "value": null
+                        "value": 0
                       },
                       {
                         "color": "red",
@@ -1423,19 +1444,26 @@
                 "overrides": []
               },
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "multi",
                   "sort": "none"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -1452,9 +1480,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -1508,6 +1536,7 @@
               "fieldConfig": {
                 "defaults": {
                   "color": {
+                    "fixedColor": "#73BF69",
                     "mode": "palette-classic"
                   },
                   "custom": {
@@ -1523,6 +1552,7 @@
               "options": {
                 "legend": {
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -1534,13 +1564,15 @@
                   "fields": "",
                   "values": true
                 },
+                "sort": "desc",
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "single",
                   "sort": "none"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       },
@@ -1557,9 +1589,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -1613,6 +1645,7 @@
               "fieldConfig": {
                 "defaults": {
                   "color": {
+                    "fixedColor": "#73BF69",
                     "mode": "palette-classic"
                   },
                   "custom": {
@@ -1628,6 +1661,7 @@
               "options": {
                 "legend": {
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -1639,13 +1673,15 @@
                   "fields": "",
                   "values": true
                 },
+                "sort": "desc",
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "single",
                   "sort": "none"
                 }
               }
             },
-            "version": ""
+            "version": "13.1.1"
           }
         }
       }
@@ -1661,7 +1697,7 @@
                 "kind": "ElementReference",
                 "name": "panel-5"
               },
-              "height": 4,
+              "height": 3,
               "width": 4,
               "x": 0,
               "y": 0
@@ -1711,6 +1747,19 @@
             "spec": {
               "element": {
                 "kind": "ElementReference",
+                "name": "panel-17"
+              },
+              "height": 5,
+              "width": 4,
+              "x": 0,
+              "y": 3
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "element": {
+                "kind": "ElementReference",
                 "name": "panel-15"
               },
               "height": 5,
@@ -1730,19 +1779,6 @@
               "width": 4,
               "x": 8,
               "y": 3
-            }
-          },
-          {
-            "kind": "GridLayoutItem",
-            "spec": {
-              "element": {
-                "kind": "ElementReference",
-                "name": "panel-17"
-              },
-              "height": 4,
-              "width": 4,
-              "x": 0,
-              "y": 4
             }
           },
           {
@@ -1826,7 +1862,20 @@
         ]
       }
     },
-    "links": [],
+    "links": [
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/bnussman/k3s/blob/main/grafana/dashboards/Analytics/overview.json"
+      }
+    ],
     "liveNow": false,
     "preload": false,
     "tags": [],
@@ -1847,9 +1896,30 @@
       "fiscalYearStartMonth": 0,
       "from": "now-1y",
       "hideTimepicker": false,
+      "timezone": "browser",
       "to": "now"
     },
     "title": "Overview",
-    "variables": []
+    "variables": [
+      {
+        "kind": "DatasourceVariable",
+        "spec": {
+          "allowCustomValue": false,
+          "current": {
+            "text": "Beep Production",
+            "value": "P64D5F8F49A950B36"
+          },
+          "hide": "dontHide",
+          "includeAll": false,
+          "multi": false,
+          "name": "Datasource",
+          "options": [],
+          "pluginId": "grafana-postgresql-datasource",
+          "refresh": "onDashboardLoad",
+          "regex": "",
+          "skipUrlSync": false
+        }
+      }
+    ]
   }
 }
