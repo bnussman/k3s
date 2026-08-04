@@ -43,9 +43,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -141,9 +141,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -239,9 +239,9 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
-                      "group": "postgres",
+                      "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
@@ -374,7 +374,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "P64D5F8F49A950B36"
+                        "name": "${Datasource}"
                       },
                       "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
@@ -498,110 +498,6 @@
             "version": "13.1.1"
           }
         }
-      },
-      "panel-5": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "P64D5F8F49A950B36"
-                      },
-                      "group": "grafana-postgresql-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "dataset": "beep",
-                        "editorMode": "builder",
-                        "format": "table",
-                        "rawSql": "SELECT first FROM \"user\" LIMIT 50 ",
-                        "sql": {
-                          "columns": [
-                            {
-                              "parameters": [
-                                {
-                                  "name": "first",
-                                  "type": "functionParameter"
-                                }
-                              ],
-                              "type": "function"
-                            }
-                          ],
-                          "groupBy": [
-                            {
-                              "property": {
-                                "type": "string"
-                              },
-                              "type": "groupBy"
-                            }
-                          ],
-                          "limit": 50
-                        },
-                        "table": "\"user\""
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 5,
-          "links": [],
-          "title": "Banks Testing",
-          "vizConfig": {
-            "group": "table",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "thresholds"
-                  },
-                  "custom": {
-                    "align": "auto",
-                    "cellOptions": {
-                      "type": "auto"
-                    },
-                    "footer": {
-                      "reducers": []
-                    },
-                    "inspect": false
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  }
-                },
-                "overrides": []
-              },
-              "options": {
-                "cellHeight": "sm",
-                "showHeader": true
-              }
-            },
-            "version": "13.1.1"
-          }
-        }
       }
     },
     "layout": {
@@ -659,19 +555,6 @@
               "x": 0,
               "y": 21
             }
-          },
-          {
-            "kind": "GridLayoutItem",
-            "spec": {
-              "element": {
-                "kind": "ElementReference",
-                "name": "panel-5"
-              },
-              "height": 8,
-              "width": 12,
-              "x": 0,
-              "y": 32
-            }
           }
         ]
       }
@@ -714,6 +597,26 @@
       "to": "now"
     },
     "title": "Beeps",
-    "variables": []
+    "variables": [
+      {
+        "kind": "DatasourceVariable",
+        "spec": {
+          "allowCustomValue": false,
+          "current": {
+            "text": "Beep Production",
+            "value": "P64D5F8F49A950B36"
+          },
+          "hide": "dontHide",
+          "includeAll": false,
+          "multi": false,
+          "name": "Datasource",
+          "options": [],
+          "pluginId": "grafana-postgresql-datasource",
+          "refresh": "onDashboardLoad",
+          "regex": "",
+          "skipUrlSync": false
+        }
+      }
+    ]
   }
 }
