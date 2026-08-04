@@ -43,7 +43,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "ca2b0d3c-cfab-4db3-97fc-7cd3daf55076"
+                        "name": "P64D5F8F49A950B36"
                       },
                       "group": "postgres",
                       "kind": "DataQuery",
@@ -141,7 +141,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "ca2b0d3c-cfab-4db3-97fc-7cd3daf55076"
+                        "name": "P64D5F8F49A950B36"
                       },
                       "group": "postgres",
                       "kind": "DataQuery",
@@ -239,7 +239,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "ca2b0d3c-cfab-4db3-97fc-7cd3daf55076"
+                        "name": "P64D5F8F49A950B36"
                       },
                       "group": "postgres",
                       "kind": "DataQuery",
@@ -374,7 +374,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "ca2b0d3c-cfab-4db3-97fc-7cd3daf55076"
+                        "name": "P64D5F8F49A950B36"
                       },
                       "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
