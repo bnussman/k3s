@@ -153,11 +153,64 @@
                       "group": "grafana-postgresql-datasource",
                       "kind": "DataQuery",
                       "spec": {
-                        "dataset": "beep",
-                        "editorMode": "builder",
+                        "editorMode": "code",
                         "format": "table",
                         "rawQuery": true,
-                        "rawSql": ""
+                        "rawSql": "SELECT user_id, SUM(price) AS \"Total Spend\", COUNT(price) AS \"Total Items\" FROM payment GROUP BY user_id ORDER BY SUM(price) DESC LIMIT 50 ",
+                        "sql": {
+                          "columns": [
+                            {
+                              "parameters": [
+                                {
+                                  "name": "user_id",
+                                  "type": "functionParameter"
+                                }
+                              ],
+                              "type": "function"
+                            },
+                            {
+                              "alias": "\"Total Spend\"",
+                              "name": "SUM",
+                              "parameters": [
+                                {
+                                  "name": "price",
+                                  "type": "functionParameter"
+                                }
+                              ],
+                              "type": "function"
+                            },
+                            {
+                              "alias": "\"Total Items\"",
+                              "name": "COUNT",
+                              "parameters": [
+                                {
+                                  "name": "price",
+                                  "type": "functionParameter"
+                                }
+                              ],
+                              "type": "function"
+                            }
+                          ],
+                          "groupBy": [
+                            {
+                              "property": {
+                                "name": "user_id",
+                                "type": "string"
+                              },
+                              "type": "groupBy"
+                            }
+                          ],
+                          "limit": 50,
+                          "orderBy": {
+                            "property": {
+                              "name": "SUM(price)",
+                              "type": "string"
+                            },
+                            "type": "property"
+                          },
+                          "orderByDirection": "DESC"
+                        },
+                        "table": "payment"
                       },
                       "version": "v0"
                     },
@@ -196,8 +249,7 @@
                     "mode": "absolute",
                     "steps": [
                       {
-                        "color": "green",
-                        "value": 0
+                        "color": "green"
                       },
                       {
                         "color": "red",
