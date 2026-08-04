@@ -625,7 +625,7 @@
         "1d"
       ],
       "fiscalYearStartMonth": 0,
-      "from": "now-90d",
+      "from": "now-6M",
       "hideTimepicker": false,
       "timezone": "browser",
       "to": "now"
@@ -633,44 +633,12 @@
     "title": "Stats by School",
     "variables": [
       {
-        "kind": "QueryVariable",
-        "spec": {
-          "allowCustomValue": true,
-          "current": {
-            "text": "ncsu.edu",
-            "value": "ncsu.edu"
-          },
-          "definition": "select lower(substring(email from '@(.*)$')) as domain from \"user\" group by domain",
-          "hide": "dontHide",
-          "includeAll": false,
-          "multi": false,
-          "name": "school",
-          "options": [],
-          "query": {
-            "datasource": {
-              "name": "P64D5F8F49A950B36"
-            },
-            "group": "postgres",
-            "kind": "DataQuery",
-            "spec": {
-              "__legacyStringValue": "select lower(substring(email from '@(.*)$')) as domain from \"user\" group by domain"
-            },
-            "version": "v0"
-          },
-          "refresh": "onDashboardLoad",
-          "regex": "",
-          "regexApplyTo": "value",
-          "skipUrlSync": false,
-          "sort": "disabled"
-        }
-      },
-      {
         "kind": "DatasourceVariable",
         "spec": {
           "allowCustomValue": false,
           "current": {
-            "text": "Beep Production",
-            "value": "P64D5F8F49A950B36"
+            "text": "Beep Dev",
+            "value": "P92E10AFAD4A19916"
           },
           "hide": "dontHide",
           "includeAll": false,
@@ -681,6 +649,62 @@
           "refresh": "onDashboardLoad",
           "regex": "",
           "skipUrlSync": false
+        }
+      },
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "allValue": "%",
+          "allowCustomValue": true,
+          "current": {
+            "text": "test.edu",
+            "value": "test.edu"
+          },
+          "definition": "select lower(substring(email from '@(.*)$')) as domain from \"user\" group by domain",
+          "hide": "dontHide",
+          "includeAll": false,
+          "multi": false,
+          "name": "school",
+          "options": [],
+          "query": {
+            "datasource": {
+              "name": "${Datasource}"
+            },
+            "group": "grafana-postgresql-datasource",
+            "kind": "DataQuery",
+            "spec": {
+              "editorMode": "code",
+              "format": "table",
+              "meta": {},
+              "query": "select lower(substring(email from '@(.*)$')) as domain from \"user\" group by domain",
+              "rawQuery": true,
+              "rawSql": "select lower(substring(email from '@(.*)$')) as domain from \"user\" group by domain",
+              "refId": "SQLVariableQueryEditor-VariableQuery",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            },
+            "version": "v0"
+          },
+          "refresh": "onDashboardLoad",
+          "regex": "",
+          "regexApplyTo": "value",
+          "skipUrlSync": false,
+          "sort": "disabled"
         }
       }
     ]
