@@ -14,6 +14,7 @@ datasources:
     secureJsonData:
       password: "{{BEEP_DEV_POSTGRES_PASSWORD}}"
     jsonData:
+      database: beep
       sslmode: require
       tlsSkipVerify: true
   - name: Beep Production
@@ -23,5 +24,6 @@ datasources:
     secureJsonData:
       password: "{{BEEP_PRODUCTION_POSTGRES_PASSWORD}}"
     jsonData:
+      database: beep
       sslmode: require
       tlsSkipVerify: true
