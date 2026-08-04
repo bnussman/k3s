@@ -217,12 +217,12 @@ const datasourcesContent = readFileSync(datasourcesPath, "utf-8")
   .replaceAll('{{BEEP_DEV_POSTGRES_PASSWORD}}', process.env.BEEP_DEV_POSTGRES_PASSWORD ?? "")
   .replaceAll('{{BEEP_PRODUCTION_POSTGRES_PASSWORD}}', process.env.BEEP_PRODUCTION_POSTGRES_PASSWORD ?? "")
 
-const grafanaDatasourceConfig = new kubernetes.core.v1.ConfigMap("grafana-datasource-config", {
+const grafanaDatasourceConfig = new kubernetes.core.v1.Secret("grafana-datasource-config", {
   metadata: {
     namespace: observabilityNamespace.metadata.name,
     name: "grafana-datasource-config",
   },
-  data: {
+  stringData: {
     "datasources.yml": datasourcesContent,
   },
 });
@@ -378,8 +378,8 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
           },
           {
             name: "grafana-datasources",
-            configMap: {
-              name: grafanaDatasourceConfig.metadata.name,
+            secret: {
+              secretName: grafanaDatasourceConfig.metadata.name,
             },
           },
         ],
