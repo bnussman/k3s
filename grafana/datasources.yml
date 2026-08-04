@@ -1,0 +1,27 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: "http://192.168.0.114:31514/"
+    isDefault: true
+    editable: true
+  - name: Beep Dev
+    type: postgres
+    url: 192.168.0.113:5432
+    user: beep_read_only
+    secureJsonData:
+      password: "{{BEEP_DEV_POSTGRES_PASSWORD}}"
+    jsonData:
+      sslmode: require
+      tlsSkipVerify: true
+  - name: Beep Production
+    type: postgres
+    url: 192.168.0.111:5432
+    user: beep_read_only
+    secureJsonData:
+      password: "{{BEEP_PRODUCTION_POSTGRES_PASSWORD}}"
+    jsonData:
+      sslmode: require
+      tlsSkipVerify: true

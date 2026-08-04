@@ -212,8 +212,10 @@ const grafanaGoogleAuthSecret = new kubernetes.core.v1.Secret("grafana-google-au
   },
 });
 
-const prometheusDatastorePath = path.join(__dirname, "/grafana/datasources/prometheus.yml");
-const prometheusDatastoreConfigContent = readFileSync(prometheusDatastorePath, "utf-8")
+const datasourcesPath = path.join(__dirname, "/grafana/datasources.yml");
+const datasourcesContent = readFileSync(datasourcesPath, "utf-8")
+  .replaceAll('{{BEEP_DEV_POSTGRES_PASSWORD}}', process.env.BEEP_DEV_POSTGRES_PASSWORD ?? "")
+  .replaceAll('{{BEEP_PRODUCTION_POSTGRES_PASSWORD}}', process.env.BEEP_PRODUCTION_POSTGRES_PASSWORD ?? "")
 
 const grafanaDatasourceConfig = new kubernetes.core.v1.ConfigMap("grafana-datasource-config", {
   metadata: {
@@ -221,7 +223,7 @@ const grafanaDatasourceConfig = new kubernetes.core.v1.ConfigMap("grafana-dataso
     name: "grafana-datasource-config",
   },
   data: {
-    "prometheus-datasource.yml": prometheusDatastoreConfigContent,
+    "datasources.yml": datasourcesContent,
   },
 });
 
