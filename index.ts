@@ -482,7 +482,7 @@ const cloudflaredDeployment = new kubernetes.apps.v1.Deployment("cloudflared", {
                 secretRef: { name: cloudflaredTokenSecret.metadata.name },
               }
             ],
-            args: ["tunnel", "--no-autoupdate", "run", "--token", "$(CLOUDFLARE_TUNNEL_TOKEN)"],
+            args: ["tunnel", "--no-autoupdate", "--metrics", "0.0.0.0:60123", "run", "--token", "$(CLOUDFLARE_TUNNEL_TOKEN)"],
           }
         ]
       },
