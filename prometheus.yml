@@ -21,7 +21,7 @@ scrape_configs:
 
   - job_name: cloudflared
     static_configs:
-      - targets: ['cloudflared.cloudflare:60123']
+      - targets: ['cloudflared-metrics.cloudflare:60123']
 
   - job_name: kubernetes
     scheme: https
