@@ -489,3 +489,27 @@ const cloudflaredDeployment = new kubernetes.apps.v1.Deployment("cloudflared", {
     },
   }
 })
+
+const cloudflaredMetricsService = new kubernetes.core.v1.Service(
+  "cloudflared-metrics",
+  {
+    metadata: {
+      name: "cloudflared-metrics",
+      namespace: cloudflareNamespace.metadata.name,
+    },
+    spec: {
+      selector: {
+        app: "cloudflared",
+      },
+      ports: [
+        {
+          name: "metrics",
+          port: 60123,
+          targetPort: 60123,
+          protocol: "TCP",
+        },
+      ],
+      type: "ClusterIP",
+    },
+  },
+);
