@@ -430,3 +430,62 @@ const grafanaIngress = new kubernetes.networking.v1.Ingress(
     },
   },
 );
+
+
+const cloudflareNamespace = new kubernetes.core.v1.Namespace(
+  "cloudflare",
+  {
+    apiVersion: 'v1',
+    metadata: { name: "cloudflare" },
+  },
+);
+
+const cloudflaredTokenSecret = new kubernetes.core.v1.Secret("cloudflared-token", {
+  metadata: {
+    name: "cloudflared-token",
+    namespace: cloudflareNamespace.metadata.name,
+  },
+  stringData: {
+    CLOUDFLARE_TUNNEL_TOKEN: process.env.CLOUDFLARE_TUNNEL_TOKEN ?? "",
+  },
+});
+
+const cloudflaredDeployment = new kubernetes.apps.v1.Deployment("cloudflared", {
+  apiVersion: 'apps/v1',
+  kind: 'Deployment',
+  metadata: {
+    name: 'cloudflared',
+    namespace: cloudflareNamespace.metadata.name,
+  },
+  spec: {
+    replicas: 1,
+    selector: {
+      matchLabels: {
+        app: 'cloudflared'
+      }
+    },
+    template: {
+      metadata: {
+        labels: {
+          app: 'cloudflared',
+          name: 'cloudflared',
+        }
+      },
+      spec: {
+        containers: [
+          {
+            name: 'cloudflared',
+            image: 'cloudflare/cloudflared:latest',
+            imagePullPolicy: 'Always',
+            envFrom: [
+              {
+                secretRef: { name: cloudflaredTokenSecret.metadata.name },
+              }
+            ],
+            args: ["tunnel", "--no-autoupdate", "run", "--token", "$(CLOUDFLARE_TUNNEL_TOKEN)"],
+          }
+        ]
+      },
+    },
+  }
+})
