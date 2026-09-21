@@ -513,3 +513,97 @@ const cloudflaredMetricsService = new kubernetes.core.v1.Service(
     },
   },
 );
+
+// #region Tailscale
+
+const tailscaleNamespace = new kubernetes.core.v1.Namespace(
+  "tailscale",
+  {
+    apiVersion: 'v1',
+    metadata: { name: "tailscale" },
+  },
+);
+
+const tailscaleSecret = new kubernetes.core.v1.Secret("tailscale-secret", {
+  metadata: {
+    name: "tailscale-secret",
+    namespace: tailscaleNamespace.metadata.name,
+  },
+  stringData: {
+    TS_SERVER_AUTHKEY: process.env.TS_SERVER_AUTHKEY ?? "",
+  },
+});
+
+const tailscaleDeployment = new kubernetes.apps.v1.Deployment("tailscale", {
+  apiVersion: 'apps/v1',
+  kind: 'Deployment',
+  metadata: {
+    name: 'tailscale',
+    namespace: tailscaleNamespace.metadata.name,
+  },
+  spec: {
+    replicas: 1,
+    selector: {
+      matchLabels: {
+        app: 'tailscale'
+      }
+    },
+    template: {
+      metadata: {
+        labels: {
+          app: 'tailscale',
+          name: 'tailscale',
+        }
+      },
+      spec: {
+        hostNetwork: true,
+        dnsPolicy: "ClusterFirstWithHostNet",
+        containers: [
+          {
+            name: 'tailscale',
+            image: 'tailscale/tailscale:stable',
+            imagePullPolicy: 'IfNotPresent',
+            envFrom: [
+              {
+                secretRef: { name: tailscaleSecret.metadata.name },
+              }
+            ],
+            args: [
+              "up",
+              "--authkey=${TS_SERVER_AUTHKEY}",
+              "--accept-routes",
+            ],
+            securityContext: {
+              capabilities: {
+                add: ["NET_ADMIN", "NET_RAW"],
+              },
+            },
+            volumeMounts: [
+              {
+                name: "tailscale-state",
+                mountPath: "/var/lib",
+              },
+              {
+                name: "tun-device",
+                mountPath: "/dev/net/tun",
+              },
+            ],
+          }
+        ],
+        volumes: [
+          {
+            name: "tailscale-state",
+            emptyDir: {},
+          },
+          {
+            name: "tun-device",
+            hostPath: {
+              path: "/dev/net/tun",
+              type: "CharDevice",
+            },
+          },
+        ],
+      },
+    },
+  }
+})
