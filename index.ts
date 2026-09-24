@@ -522,6 +522,21 @@ const geoNamespace = new kubernetes.core.v1.Namespace(
   },
 );
 
+const photonPvc = new kubernetes.core.v1.PersistentVolumeClaim("photon-pvc", {
+  metadata: {
+    name: "photon-pvc",
+    namespace: geoNamespace.metadata.name,
+  },
+  spec: {
+    accessModes: ["ReadWriteOnce"],
+    resources: {
+      requests: {
+        storage: "72Gi",
+      },
+    },
+  },
+});
+
 const photonDeployment = new kubernetes.apps.v1.Deployment("photon", {
   apiVersion: 'apps/v1',
   kind: 'Deployment',
@@ -563,8 +578,22 @@ const photonDeployment = new kubernetes.apps.v1.Deployment("photon", {
                 value: "true"
               }
             ],
+            volumeMounts: [
+              {
+                name: "photon-data",
+                mountPath: "/photon/data",
+              },
+            ],
           }
-        ]
+        ],
+        volumes: [
+          {
+            name: "photon-data",
+            persistentVolumeClaim: {
+              claimName: photonPvc.metadata.name,
+            },
+          },
+        ],
       },
     },
   }
