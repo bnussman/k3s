@@ -23,6 +23,10 @@ scrape_configs:
     static_configs:
       - targets: ['cloudflared-metrics.cloudflare:60123']
 
+  - job_name: photon
+    static_configs:
+      - targets: ['photon.geo:2322']
+
   - job_name: kubernetes
     scheme: https
     authorization:
