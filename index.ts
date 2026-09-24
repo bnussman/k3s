@@ -513,3 +513,82 @@ const cloudflaredMetricsService = new kubernetes.core.v1.Service(
     },
   },
 );
+
+const geoNamespace = new kubernetes.core.v1.Namespace(
+  "geo",
+  {
+    apiVersion: 'v1',
+    metadata: { name: "geo" },
+  },
+);
+
+const photonDeployment = new kubernetes.apps.v1.Deployment("photon", {
+  apiVersion: 'apps/v1',
+  kind: 'Deployment',
+  metadata: {
+    name: 'photon',
+    namespace: geoNamespace.metadata.name,
+  },
+  spec: {
+    replicas: 1,
+    selector: {
+      matchLabels: {
+        app: 'photon'
+      }
+    },
+    template: {
+      metadata: {
+        labels: {
+          app: 'photon',
+          name: 'photon',
+        }
+      },
+      spec: {
+        containers: [
+          {
+            name: 'photon',
+            image: 'rtuszik/photon-docker:latest',
+            ports: [{ containerPort: 2322 }],
+            env: [
+              {
+                name: "REGION",
+                value: "us"
+              },
+              {
+                name: "UPDATE_INTERVAL",
+                value: "7d"
+              },
+              {
+                name: "ENABLE_METRICS",
+                value: "true"
+              }
+            ],
+          }
+        ]
+      },
+    },
+  }
+})
+
+const photonService = new kubernetes.core.v1.Service(
+  "photon-metrics",
+  {
+    metadata: {
+      name: "photon-metrics",
+      namespace: geoNamespace.metadata.name,
+    },
+    spec: {
+      selector: {
+        app: "photon",
+      },
+      ports: [
+        {
+          port: 2322,
+          targetPort: 2322,
+          protocol: "TCP",
+        },
+      ],
+      type: "ClusterIP",
+    },
+  },
+);
