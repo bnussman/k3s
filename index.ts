@@ -600,10 +600,10 @@ const photonDeployment = new kubernetes.apps.v1.Deployment("photon", {
 })
 
 const photonService = new kubernetes.core.v1.Service(
-  "photon-metrics",
+  "photon",
   {
     metadata: {
-      name: "photon-metrics",
+      name: "photon",
       namespace: geoNamespace.metadata.name,
     },
     spec: {
