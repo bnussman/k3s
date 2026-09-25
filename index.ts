@@ -27,7 +27,7 @@ const headlamp = new kubernetes.helm.v3.Release("headlamp", {
     repo: "https://kubernetes-sigs.github.io/headlamp/",
   },
   createNamespace: true,
-  version: "0.41.0",
+  version: "0.45.0",
   values: {
     service: {
       type: "NodePort",
