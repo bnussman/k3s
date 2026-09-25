@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "k3s",
   "devDependencies": {
     "@types/bun": "^1.4.2",
     "typescript": "^5.0.0"
