@@ -8,11 +8,6 @@ on:
 
 jobs:
   deploy:
-    permissions:
-      contents: read
-      packages: write
-      attestations: write
-      id-token: write
     runs-on: ubuntu-latest
     steps:
       - uses: tailscale/github-action@v4
