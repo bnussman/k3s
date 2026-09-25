@@ -1,6 +1,9 @@
+import * as pulumi from "@pulumi/pulumi";
 import * as kubernetes from "@pulumi/kubernetes";
 import { readFileSync } from "fs";
-import path = require("path");
+import path from 'node:path';
+
+const config = new pulumi.Config();
 
 const dashboardNamespace = new kubernetes.core.v1.Namespace(
   "kubernetes-dashboard",
@@ -106,9 +109,9 @@ const observabilityNamespace = new kubernetes.core.v1.Namespace(
 );
 
 const promethusAppName = "prometheus";
-const configPath = path.join(__dirname, "prometheus.yml");
+const configPath = path.join(import.meta.dirname, "prometheus.yml");
 const prometheusConfigContent = readFileSync(configPath, "utf-8")
-  .replaceAll("{{K3S_TOKEN}}", process.env.K3S_TOKEN ?? "");
+  .replaceAll("{{K3S_TOKEN}}", config.requireSecret("K3S_TOKEN").get());
 
 const prometheusConfigSecret = new kubernetes.core.v1.Secret(`${promethusAppName}-config-secret`, {
   metadata: { namespace: observabilityNamespace.metadata.name },
@@ -207,15 +210,15 @@ const grafanaGoogleAuthSecret = new kubernetes.core.v1.Secret("grafana-google-au
     namespace: observabilityNamespace.metadata.name,
   },
   stringData: {
-    "client-id": process.env.GF_AUTH_GOOGLE_CLIENT_ID ?? "",
-    "client-secret": process.env.GF_AUTH_GOOGLE_CLIENT_SECRET ?? "",
+    "client-id": config.requireSecret("GF_AUTH_GOOGLE_CLIENT_ID"),
+    "client-secret": config.requireSecret("GF_AUTH_GOOGLE_CLIENT_SECRET"),
   },
 });
 
-const datasourcesPath = path.join(__dirname, "/grafana/datasources.yml");
+const datasourcesPath = path.join(import.meta.dirname, "/grafana/datasources.yml");
 const datasourcesContent = readFileSync(datasourcesPath, "utf-8")
-  .replaceAll('{{BEEP_DEV_POSTGRES_PASSWORD}}', process.env.BEEP_DEV_POSTGRES_PASSWORD ?? "")
-  .replaceAll('{{BEEP_PRODUCTION_POSTGRES_PASSWORD}}', process.env.BEEP_PRODUCTION_POSTGRES_PASSWORD ?? "")
+  .replaceAll('{{BEEP_DEV_POSTGRES_PASSWORD}}', config.requireSecret("BEEP_DEV_POSTGRES_PASSWORD").get())
+  .replaceAll('{{BEEP_PRODUCTION_POSTGRES_PASSWORD}}', config.requireSecret("BEEP_PRODUCTION_POSTGRES_PASSWORD").get())
 
 const grafanaDatasourceConfig = new kubernetes.core.v1.Secret("grafana-datasource-config", {
   metadata: {
@@ -446,7 +449,7 @@ const cloudflaredTokenSecret = new kubernetes.core.v1.Secret("cloudflared-token"
     namespace: cloudflareNamespace.metadata.name,
   },
   stringData: {
-    CLOUDFLARE_TUNNEL_TOKEN: process.env.CLOUDFLARE_TUNNEL_TOKEN ?? "",
+    CLOUDFLARE_TUNNEL_TOKEN: config.requireSecret("CLOUDFLARE_TUNNEL_TOKEN"),
   },
 });
 

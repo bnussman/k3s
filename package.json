@@ -1,11 +1,11 @@
 {
   "name": "test",
   "devDependencies": {
-    "@types/node": "^18",
+    "@types/bun": "^1.4.2",
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@pulumi/kubernetes": "^4.0.0",
-    "@pulumi/pulumi": "^3.113.0"
+    "@pulumi/kubernetes": "^4.34.2",
+    "@pulumi/pulumi": "^3.264.0"
   }
 }
