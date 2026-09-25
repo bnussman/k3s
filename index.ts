@@ -110,8 +110,9 @@ const observabilityNamespace = new kubernetes.core.v1.Namespace(
 
 const promethusAppName = "prometheus";
 const configPath = path.join(import.meta.dirname, "prometheus.yml");
-const prometheusConfigContent = readFileSync(configPath, "utf-8")
-  .replaceAll("{{K3S_TOKEN}}", config.requireSecret("K3S_TOKEN").get());
+const prometheusConfigContent = config.requireSecret("K3S_TOKEN").apply((k3sToken) =>
+  readFileSync(configPath, "utf-8").replaceAll("{{K3S_TOKEN}}", k3sToken),
+);
 
 const prometheusConfigSecret = new kubernetes.core.v1.Secret(`${promethusAppName}-config-secret`, {
   metadata: { namespace: observabilityNamespace.metadata.name },
@@ -216,9 +217,14 @@ const grafanaGoogleAuthSecret = new kubernetes.core.v1.Secret("grafana-google-au
 });
 
 const datasourcesPath = path.join(import.meta.dirname, "/grafana/datasources.yml");
-const datasourcesContent = readFileSync(datasourcesPath, "utf-8")
-  .replaceAll('{{BEEP_DEV_POSTGRES_PASSWORD}}', config.requireSecret("BEEP_DEV_POSTGRES_PASSWORD").get())
-  .replaceAll('{{BEEP_PRODUCTION_POSTGRES_PASSWORD}}', config.requireSecret("BEEP_PRODUCTION_POSTGRES_PASSWORD").get())
+const datasourcesContent = pulumi.all([
+  config.requireSecret("BEEP_DEV_POSTGRES_PASSWORD"),
+  config.requireSecret("BEEP_PRODUCTION_POSTGRES_PASSWORD"),
+]).apply(([devPassword, productionPassword]) =>
+  readFileSync(datasourcesPath, "utf-8")
+    .replaceAll("{{BEEP_DEV_POSTGRES_PASSWORD}}", devPassword)
+    .replaceAll("{{BEEP_PRODUCTION_POSTGRES_PASSWORD}}", productionPassword),
+);
 
 const grafanaDatasourceConfig = new kubernetes.core.v1.Secret("grafana-datasource-config", {
   metadata: {
