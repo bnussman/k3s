@@ -5,6 +5,10 @@ import path from 'node:path';
 
 const config = new pulumi.Config();
 
+const k8sProvider = new kubernetes.Provider("k8s", {
+  kubeconfig: config.requireSecret("KUBECONFIG"),
+});
+
 const dashboardNamespace = new kubernetes.core.v1.Namespace(
   "kubernetes-dashboard",
   {
@@ -12,6 +16,7 @@ const dashboardNamespace = new kubernetes.core.v1.Namespace(
       name: "kubernetes-dashboard",
     },
   },
+  { provider: k8sProvider },
 );
 
 // Use Helm to install the Kubernets dashboard
@@ -28,14 +33,14 @@ const headlamp = new kubernetes.helm.v3.Release("headlamp", {
       type: "NodePort",
     },
   },
-});
+}, { provider: k8sProvider });
 
 const serviceAccount = new kubernetes.core.v1.ServiceAccount("admin-user", {
   metadata: {
     name: "admin-user",
     namespace: dashboardNamespace.metadata.name,
   },
-});
+}, { provider: k8sProvider });
 
 const serviceAccountRoleBining = new kubernetes.rbac.v1.ClusterRoleBinding(
   "admin-role-binding",
@@ -56,6 +61,7 @@ const serviceAccountRoleBining = new kubernetes.rbac.v1.ClusterRoleBinding(
       },
     ],
   },
+  { provider: k8sProvider },
 );
 
 const adminToken = new kubernetes.core.v1.Secret("admin-user-token", {
@@ -69,7 +75,7 @@ const adminToken = new kubernetes.core.v1.Secret("admin-user-token", {
       "kubernetes.io/service-account.name": serviceAccount.metadata.name,
     }
   }
-});
+}, { provider: k8sProvider });
 
 const traefikConfig = `
 ingressRoute:
@@ -97,6 +103,7 @@ const traefikHelmChartConfig = new kubernetes.apiextensions.CustomResource(
       valuesContent: traefikConfig,
     },
   },
+  { provider: k8sProvider },
 );
 
 const observabilityNamespace = new kubernetes.core.v1.Namespace(
@@ -106,6 +113,7 @@ const observabilityNamespace = new kubernetes.core.v1.Namespace(
       name: "observability",
     },
   },
+  { provider: k8sProvider },
 );
 
 const promethusAppName = "prometheus";
@@ -119,7 +127,7 @@ const prometheusConfigSecret = new kubernetes.core.v1.Secret(`${promethusAppName
   stringData: {
     "prometheus.yml": prometheusConfigContent,
   },
-});
+}, { provider: k8sProvider });
 
 const prometheusPvc = new kubernetes.core.v1.PersistentVolumeClaim(`${promethusAppName}-storage`, {
   metadata: { namespace: observabilityNamespace.metadata.name },
@@ -131,7 +139,7 @@ const prometheusPvc = new kubernetes.core.v1.PersistentVolumeClaim(`${promethusA
       },
     },
   },
-});
+}, { provider: k8sProvider });
 
 const prometheusDeployment = new kubernetes.apps.v1.Deployment(`${promethusAppName}-deployment`, {
   metadata: { namespace: observabilityNamespace.metadata.name },
@@ -180,7 +188,7 @@ const prometheusDeployment = new kubernetes.apps.v1.Deployment(`${promethusAppNa
       },
     },
   },
-});
+}, { provider: k8sProvider });
 
 const prometheusService = new kubernetes.core.v1.Service(`${promethusAppName}-service`, {
   metadata: { namespace: observabilityNamespace.metadata.name },
@@ -189,7 +197,7 @@ const prometheusService = new kubernetes.core.v1.Service(`${promethusAppName}-se
     ports: [{ port: 9090, targetPort: 9090, name: "http" }],
     selector: { app: promethusAppName },
   },
-});
+}, { provider: k8sProvider });
 
 const grafanaPvc = new kubernetes.core.v1.PersistentVolumeClaim("grafana-pvc", {
   metadata: {
@@ -203,7 +211,7 @@ const grafanaPvc = new kubernetes.core.v1.PersistentVolumeClaim("grafana-pvc", {
       },
     },
   },
-});
+}, { provider: k8sProvider });
 
 const grafanaGoogleAuthSecret = new kubernetes.core.v1.Secret("grafana-google-auth", {
   metadata: {
@@ -214,7 +222,7 @@ const grafanaGoogleAuthSecret = new kubernetes.core.v1.Secret("grafana-google-au
     "client-id": config.requireSecret("GF_AUTH_GOOGLE_CLIENT_ID"),
     "client-secret": config.requireSecret("GF_AUTH_GOOGLE_CLIENT_SECRET"),
   },
-});
+}, { provider: k8sProvider });
 
 const datasourcesPath = path.join(import.meta.dirname, "/grafana/datasources.yml");
 const datasourcesContent = pulumi.all([
@@ -234,7 +242,7 @@ const grafanaDatasourceConfig = new kubernetes.core.v1.Secret("grafana-datasourc
   stringData: {
     "datasources.yml": datasourcesContent,
   },
-});
+}, { provider: k8sProvider });
 
 const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment", {
   metadata: {
@@ -395,7 +403,7 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
       },
     },
   },
-});
+}, { provider: k8sProvider });
 
 const grafanaService = new kubernetes.core.v1.Service("grafana-service", {
   metadata: {
@@ -407,7 +415,7 @@ const grafanaService = new kubernetes.core.v1.Service("grafana-service", {
     ports: [{ port: 3000, targetPort: 3000 }],
     type: "ClusterIP",
   },
-});
+}, { provider: k8sProvider });
 
 const grafanaIngress = new kubernetes.networking.v1.Ingress(
   "grafana-ingress",
@@ -438,6 +446,7 @@ const grafanaIngress = new kubernetes.networking.v1.Ingress(
       ],
     },
   },
+  { provider: k8sProvider },
 );
 
 
@@ -447,6 +456,7 @@ const cloudflareNamespace = new kubernetes.core.v1.Namespace(
     apiVersion: 'v1',
     metadata: { name: "cloudflare" },
   },
+  { provider: k8sProvider },
 );
 
 const cloudflaredTokenSecret = new kubernetes.core.v1.Secret("cloudflared-token", {
@@ -457,7 +467,7 @@ const cloudflaredTokenSecret = new kubernetes.core.v1.Secret("cloudflared-token"
   stringData: {
     CLOUDFLARE_TUNNEL_TOKEN: config.requireSecret("CLOUDFLARE_TUNNEL_TOKEN"),
   },
-});
+}, { provider: k8sProvider });
 
 const cloudflaredDeployment = new kubernetes.apps.v1.Deployment("cloudflared", {
   apiVersion: 'apps/v1',
@@ -497,7 +507,7 @@ const cloudflaredDeployment = new kubernetes.apps.v1.Deployment("cloudflared", {
       },
     },
   }
-})
+}, { provider: k8sProvider })
 
 const cloudflaredMetricsService = new kubernetes.core.v1.Service(
   "cloudflared-metrics",
@@ -521,6 +531,7 @@ const cloudflaredMetricsService = new kubernetes.core.v1.Service(
       type: "ClusterIP",
     },
   },
+  { provider: k8sProvider },
 );
 
 const geoNamespace = new kubernetes.core.v1.Namespace(
@@ -529,6 +540,7 @@ const geoNamespace = new kubernetes.core.v1.Namespace(
     apiVersion: 'v1',
     metadata: { name: "geo" },
   },
+  { provider: k8sProvider },
 );
 
 const photonPvc = new kubernetes.core.v1.PersistentVolumeClaim("photon-pvc", {
@@ -544,7 +556,7 @@ const photonPvc = new kubernetes.core.v1.PersistentVolumeClaim("photon-pvc", {
       },
     },
   },
-});
+}, { provider: k8sProvider });
 
 const photonDeployment = new kubernetes.apps.v1.Deployment("photon", {
   apiVersion: 'apps/v1',
@@ -606,7 +618,7 @@ const photonDeployment = new kubernetes.apps.v1.Deployment("photon", {
       },
     },
   }
-})
+}, { provider: k8sProvider })
 
 const photonService = new kubernetes.core.v1.Service(
   "photon",
@@ -629,4 +641,5 @@ const photonService = new kubernetes.core.v1.Service(
       type: "ClusterIP",
     },
   },
+  { provider: k8sProvider },
 );
