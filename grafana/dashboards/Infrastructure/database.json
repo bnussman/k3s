@@ -182,7 +182,20 @@
         "rowHeightMode": "standard"
       }
     },
-    "links": [],
+    "links": [
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/bnussman/k3s/blob/main/grafana/dashboards/Infrastructure/database.json"
+      }
+    ],
     "liveNow": false,
     "preferences": {
       "layout": {
