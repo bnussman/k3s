@@ -27,3 +27,13 @@ datasources:
       database: beep
       sslmode: require
       tlsSkipVerify: true
+  - name: Better Stack ClickHouse
+    type: grafana-clickhouse-datasource
+    jsonData:
+      host: "{{BEEP_BETTER_STACK_HOST}}"
+      port: 443
+      protocol: http
+      secure: true
+      username: "{{BEEP_BETTER_STACK_USERNAME}}"
+    secureJsonData:
+      password: "{{BEEP_BETTER_STACK_PASSWORD}}"

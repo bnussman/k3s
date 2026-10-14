@@ -228,10 +228,16 @@ const datasourcesPath = path.join(import.meta.dirname, "/grafana/datasources.yml
 const datasourcesContent = pulumi.all([
   config.requireSecret("BEEP_DEV_POSTGRES_PASSWORD"),
   config.requireSecret("BEEP_PRODUCTION_POSTGRES_PASSWORD"),
-]).apply(([devPassword, productionPassword]) =>
+  config.requireSecret("BEEP_BETTER_STACK_HOST"),
+  config.requireSecret("BEEP_BETTER_STACK_USERNAME"),
+  config.requireSecret("BEEP_BETTER_STACK_PASSWORD"),
+]).apply(([devPassword, productionPassword, betterStackHost, betterStackUsername, betterStackPassword]) =>
   readFileSync(datasourcesPath, "utf-8")
     .replaceAll("{{BEEP_DEV_POSTGRES_PASSWORD}}", devPassword)
-    .replaceAll("{{BEEP_PRODUCTION_POSTGRES_PASSWORD}}", productionPassword),
+    .replaceAll("{{BEEP_PRODUCTION_POSTGRES_PASSWORD}}", productionPassword)
+    .replaceAll("{{BEEP_BETTER_STACK_HOST}}", betterStackHost)
+    .replaceAll("{{BEEP_BETTER_STACK_USERNAME}}", betterStackUsername)
+    .replaceAll("{{BEEP_BETTER_STACK_PASSWORD}}", betterStackPassword),
 );
 
 const grafanaDatasourceConfig = new kubernetes.core.v1.Secret("grafana-datasource-config", {
