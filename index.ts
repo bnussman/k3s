@@ -373,6 +373,10 @@ const grafanaDeployment = new kubernetes.apps.v1.Deployment("grafana-deployment"
                 name: "GF_AUTH_DISABLE_LOGIN_FORM",
                 value: "true",
               },
+              {
+                name: "GF_INSTALL_PLUGINS",
+                value: "grafana-clickhouse-datasource"
+              }
             ],
             volumeMounts: [
               {
