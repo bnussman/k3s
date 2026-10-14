@@ -77,7 +77,7 @@
           "description": "",
           "id": 1,
           "links": [],
-          "title": "New panel",
+          "title": "Database P50",
           "vizConfig": {
             "group": "timeseries",
             "kind": "VizConfig",
