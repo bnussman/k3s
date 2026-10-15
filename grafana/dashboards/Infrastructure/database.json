@@ -416,7 +416,7 @@
                 },
                 "tooltip": {
                   "hideZeros": false,
-                  "mode": "single",
+                  "mode": "multi",
                   "sort": "none"
                 }
               }
@@ -427,40 +427,49 @@
       }
     },
     "layout": {
-      "kind": "AutoGridLayout",
+      "kind": "GridLayout",
       "spec": {
-        "columnWidthMode": "standard",
         "items": [
           {
-            "kind": "AutoGridLayoutItem",
+            "kind": "GridLayoutItem",
             "spec": {
               "element": {
                 "kind": "ElementReference",
                 "name": "panel-1"
-              }
+              },
+              "height": 9,
+              "width": 13,
+              "x": 0,
+              "y": 0
             }
           },
           {
-            "kind": "AutoGridLayoutItem",
+            "kind": "GridLayoutItem",
             "spec": {
               "element": {
                 "kind": "ElementReference",
                 "name": "panel-2"
-              }
+              },
+              "height": 9,
+              "width": 11,
+              "x": 13,
+              "y": 0
             }
           },
           {
-            "kind": "AutoGridLayoutItem",
+            "kind": "GridLayoutItem",
             "spec": {
               "element": {
                 "kind": "ElementReference",
                 "name": "panel-3"
-              }
+              },
+              "height": 9,
+              "width": 24,
+              "x": 0,
+              "y": 9
             }
           }
-        ],
-        "maxColumnCount": 3,
-        "rowHeightMode": "standard"
+        ]
       }
     },
     "links": [
