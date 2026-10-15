@@ -366,12 +366,12 @@
         "1d"
       ],
       "fiscalYearStartMonth": 0,
-      "from": "now-6h",
+      "from": "now-3h",
       "hideTimepicker": false,
       "timezone": "browser",
       "to": "now"
     },
-    "title": "Database",
+    "title": "API",
     "variables": []
   }
 }
