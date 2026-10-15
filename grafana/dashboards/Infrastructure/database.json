@@ -472,7 +472,7 @@
           "description": "",
           "id": 4,
           "links": [],
-          "title": "Outbound HTTP Requests per Service",
+          "title": "Outbound HTTP Request Latency per Service",
           "vizConfig": {
             "group": "timeseries",
             "kind": "VizConfig",
