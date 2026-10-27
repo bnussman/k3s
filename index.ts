@@ -504,8 +504,7 @@ const cloudflaredDeployment = new kubernetes.apps.v1.Deployment("cloudflared", {
         containers: [
           {
             name: 'cloudflared',
-            image: 'cloudflare/cloudflared:latest',
-            imagePullPolicy: 'Always',
+            image: 'cloudflare/cloudflared:2026.10.4',
             envFrom: [
               {
                 secretRef: { name: cloudflaredTokenSecret.metadata.name },
