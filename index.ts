@@ -652,3 +652,35 @@ const photonService = new kubernetes.core.v1.Service(
   },
   { provider: k8sProvider },
 );
+
+const photonIngress = new kubernetes.networking.v1.Ingress(
+  "photon-ingress",
+  {
+    metadata: {
+      name: "photon-ingress",
+      namespace: geoNamespace.metadata.name,
+    },
+    spec: {
+      rules: [
+        {
+          host: "photon.nussman.us",
+          http: {
+            paths: [
+              {
+                path: "/",
+                pathType: "Prefix",
+                backend: {
+                  service: {
+                    name: photonService.metadata.name,
+                    port: { number: 2322 },
+                  },
+                },
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+  { provider: k8sProvider },
+);
