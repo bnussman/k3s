@@ -30,6 +30,203 @@
     "description": "",
     "editable": true,
     "elements": {
+      "panel-10": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "${Datasource}"
+                      },
+                      "group": "grafana-postgresql-datasource",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "dataset": "beep",
+                        "editorMode": "builder",
+                        "format": "table",
+                        "rawQuery": true,
+                        "rawSql": "SELECT COUNT(id) AS \"app_store\" FROM payment WHERE store = 'app_store' LIMIT 50 ",
+                        "sql": {
+                          "columns": [
+                            {
+                              "alias": "\"app_store\"",
+                              "name": "COUNT",
+                              "parameters": [
+                                {
+                                  "name": "id",
+                                  "type": "functionParameter"
+                                }
+                              ],
+                              "type": "function"
+                            }
+                          ],
+                          "groupBy": [],
+                          "limit": 50,
+                          "whereJsonTree": {
+                            "children1": [
+                              {
+                                "id": "9b98aa98-cdef-4012-b456-71a1ec251e69",
+                                "properties": {
+                                  "field": "store",
+                                  "fieldSrc": "field",
+                                  "operator": "equal",
+                                  "value": [
+                                    "app_store"
+                                  ],
+                                  "valueError": [
+                                    null
+                                  ],
+                                  "valueSrc": [
+                                    "value"
+                                  ],
+                                  "valueType": [
+                                    "text"
+                                  ]
+                                },
+                                "type": "rule"
+                              }
+                            ],
+                            "id": "88b999ba-0123-4456-b89a-b1a1ec236507",
+                            "type": "group"
+                          },
+                          "whereString": "store = 'app_store'"
+                        },
+                        "table": "payment"
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "${Datasource}"
+                      },
+                      "group": "grafana-postgresql-datasource",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "dataset": "beep",
+                        "editorMode": "builder",
+                        "format": "table",
+                        "rawSql": "SELECT COUNT(id) AS \"play_store\" FROM payment WHERE store = 'play_store' LIMIT 50 ",
+                        "sql": {
+                          "columns": [
+                            {
+                              "alias": "\"play_store\"",
+                              "name": "COUNT",
+                              "parameters": [
+                                {
+                                  "name": "id",
+                                  "type": "functionParameter"
+                                }
+                              ],
+                              "type": "function"
+                            }
+                          ],
+                          "groupBy": [],
+                          "limit": 50,
+                          "whereJsonTree": {
+                            "children1": [
+                              {
+                                "id": "998888ba-89ab-4cde-b012-31a1ec258c97",
+                                "properties": {
+                                  "field": "store",
+                                  "fieldSrc": "field",
+                                  "operator": "equal",
+                                  "value": [
+                                    "play_store"
+                                  ],
+                                  "valueError": [
+                                    null
+                                  ],
+                                  "valueSrc": [
+                                    "value"
+                                  ],
+                                  "valueType": [
+                                    "text"
+                                  ]
+                                },
+                                "type": "rule"
+                              }
+                            ],
+                            "id": "88b999ba-0123-4456-b89a-b1a1ec236507",
+                            "type": "group"
+                          },
+                          "whereString": "store = 'play_store'"
+                        },
+                        "table": "payment"
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "B"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 10,
+          "links": [],
+          "title": "App Store vs Google Play store purchase count (all time totals)",
+          "vizConfig": {
+            "group": "piechart",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    }
+                  }
+                },
+                "overrides": []
+              },
+              "options": {
+                "legend": {
+                  "displayMode": "list",
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "pieType": "pie",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "sort": "desc",
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              }
+            },
+            "version": "13.1.1"
+          }
+        }
+      },
       "panel-2": {
         "kind": "Panel",
         "spec": {
@@ -1039,7 +1236,7 @@
                 "kind": "ElementReference",
                 "name": "panel-7"
               },
-              "height": 5,
+              "height": 7,
               "width": 7,
               "x": 0,
               "y": 0
@@ -1052,8 +1249,8 @@
                 "kind": "ElementReference",
                 "name": "panel-6"
               },
-              "height": 5,
-              "width": 7,
+              "height": 7,
+              "width": 5,
               "x": 7,
               "y": 0
             }
@@ -1065,9 +1262,22 @@
                 "kind": "ElementReference",
                 "name": "panel-2"
               },
-              "height": 5,
-              "width": 10,
-              "x": 14,
+              "height": 7,
+              "width": 6,
+              "x": 12,
+              "y": 0
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-10"
+              },
+              "height": 7,
+              "width": 6,
+              "x": 18,
               "y": 0
             }
           },
@@ -1081,7 +1291,7 @@
               "height": 10,
               "width": 12,
               "x": 0,
-              "y": 5
+              "y": 7
             }
           },
           {
@@ -1094,7 +1304,7 @@
               "height": 10,
               "width": 6,
               "x": 12,
-              "y": 5
+              "y": 7
             }
           },
           {
@@ -1107,7 +1317,7 @@
               "height": 10,
               "width": 6,
               "x": 18,
-              "y": 5
+              "y": 7
             }
           },
           {
@@ -1120,7 +1330,7 @@
               "height": 12,
               "width": 24,
               "x": 0,
-              "y": 15
+              "y": 17
             }
           },
           {
@@ -1133,7 +1343,7 @@
               "height": 8,
               "width": 24,
               "x": 0,
-              "y": 27
+              "y": 29
             }
           }
         ]
